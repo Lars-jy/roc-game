@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#000000"><title>R.O.C · 邀请函</title>
+<link rel="stylesheet" href="./src/invitation-demo.css">
+  <link rel="stylesheet" href="./src/paper-theme.css">
+  <link rel="stylesheet" href="./src/roc-theme.css">
+</head>
+<body>
+<main class="invitation-stage" data-phase="narration" aria-label="邀请函开场预览">
+  <button id="restart-invitation" hidden class="quiet-button replay" type="button">重播片段</button>
+  <div id="invitation-start" class="invitation-start"><button id="begin-invitation" type="button">开始</button><p id="invitation-audio-note" hidden></p></div>
+  <section id="narration" class="narration" aria-label="剧情导入"><p id="intro-sentence" aria-label="那天，你的好朋友周岚向你提起了一个私人投资项目，邀请你加入。"></p></section>
+  <section id="envelope-scene" class="envelope-scene" aria-label="收到的邀请函" hidden>
+    <div class="envelope-shadow"></div>
+    <button id="open-envelope" class="envelope" type="button" aria-label="点击拆开金鼎财富邀请函">
+      <span class="envelope-back"></span>
+      <span class="mini-letter" aria-hidden="true"><span>金鼎财富</span><strong>私人投资交流邀请函</strong><i></i><i></i><i></i></span>
+      <span class="fold fold-left"></span><span class="fold fold-right"></span><span class="fold fold-bottom"></span>
+      <span class="envelope-flap"></span><span class="seal" aria-hidden="true">鼎</span>
+      <span class="envelope-brand">金 鼎 财 富</span><span class="envelope-recipient">亲启</span>
+    </button>
+    <p id="envelope-instruction" class="envelope-instruction">点击拆开</p>
+  </section>
+</main>
+<dialog id="invitation-reader" aria-labelledby="letter-title">
+  <article class="letter" tabindex="-1" autofocus>
+    <header><p class="company">金鼎财富</p><h1 id="letter-title">私人投资交流邀请函</h1><div class="letter-rule"></div></header>
+    <div class="letter-body">
+      <p class="salutation">尊敬的受邀嘉宾：</p>
+      <p>经周岚女士推荐，诚邀您莅临金鼎财富，参加「稳盈计划」专场投资交流。</p>
+      <p>本次会面将由客户经理陆衡先生接待，为您介绍项目运作、收益分配及认购安排，并就相关事项进行现场答疑。项目说明及认购资料将于会面时提供，供您查阅。</p>
+      <p>本次交流采用定向邀请方式，请您携本函到访。</p>
+      <div class="meeting"><p><span>会面地点</span>金鼎大厦 · 金鼎财富会客室</p><p><span>接待人员</span>陆衡　客户经理</p></div>
+      <p class="courtesy">恭候莅临。</p>
+      <div class="signature"><p>金鼎财富</p><p>客户服务组</p></div>
+    </div>
+    <footer><button id="depart-invitation" type="button" hidden>收起邀请函，前往赴约 <span aria-hidden="true">▸</span></button><button id="close-invitation" type="button">收起邀请函 <span aria-hidden="true">▸</span></button></footer>
+  </article>
+</dialog>
+<script type="module" src="./src/invitation-demo.js"></script>
+</body>
+</html>

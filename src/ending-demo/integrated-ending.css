@@ -1,0 +1,13 @@
+body.integrated-ending-active { background:#000 !important; cursor:default; --ending-ui-opacity:1; }
+body.integrated-ending-active > :not(#integrated-ending-layer):not(script):not(style):not(link) {
+  opacity:var(--ending-ui-opacity) !important;
+  pointer-events:none !important;
+}
+#integrated-ending-layer { position:fixed;inset:0;z-index:2147483000;pointer-events:none;cursor:default; }
+#integrated-ending-layer[hidden] { display:none; }
+#integrated-ending-canvas {
+  position:absolute;inset:0;margin:auto;
+  width:min(100vw,177.777778vh);height:min(100vh,56.25vw);
+  background:transparent;pointer-events:none;cursor:default;
+}
+body.integrated-ending-active .summary-actions button:disabled { opacity:1; }

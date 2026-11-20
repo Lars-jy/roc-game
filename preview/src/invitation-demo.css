@@ -1,0 +1,77 @@
+:root { color-scheme:dark; font-family:"SimSun","Songti SC","STSong",serif; background:#000; color:#e5dfd2; }
+* { box-sizing:border-box; }
+html,body { width:100%; height:100%; margin:0; overflow:hidden; }
+body { display:grid; place-items:center; }
+[hidden] { display:none!important; }
+button { font:inherit; cursor:pointer; }
+button:focus-visible { outline:1px solid #d8c4a0; outline-offset:8px; }
+.invitation-stage { position:relative; isolation:isolate; width:min(100vw,177.77778svh); height:min(100svh,56.25vw); background:#000; overflow:hidden; }
+.quiet-button { border:0; background:none; color:#888176; padding:14px; font-size:14px; letter-spacing:.1em; }
+.quiet-button:hover { color:#e5dfd2; }
+.replay { position:absolute; z-index:10; right:2.5%; top:2.5%; }
+.narration { position:absolute; inset:0; display:grid; place-items:center; padding:0 3%; transition:opacity .85s ease; }
+.narration.is-leaving { opacity:0; }
+#intro-sentence { margin:0; max-inline-size:28em; text-align:center; text-wrap:balance; font-size:clamp(24px,3.15vw,58px); line-height:1.8; letter-spacing:.07em; color:#e5decc; }
+.glyph { visibility:hidden; }
+.glyph.is-visible { visibility:visible; }
+.envelope-scene { position:absolute; inset:0; display:grid; place-content:center; justify-items:center; background:radial-gradient(ellipse at 50% 46%,#1d19124d,transparent 57%); animation:envelope-arrive 1.1s ease both; }
+.envelope { position:relative; display:block; width:clamp(320px,35vw,580px); aspect-ratio:1.68; padding:0; border:0; background:none; color:#493b29; perspective:1000px; transform:rotate(-3deg); transition:transform .4s; filter:drop-shadow(0 16px 25px #000); }
+.envelope:hover:not(:disabled) { transform:rotate(-1deg) translateY(-5px); }
+.envelope:disabled { cursor:default; }
+.envelope-back { position:absolute; inset:0; border:1px solid #8e7757; border-radius:3px; background:linear-gradient(130deg,#c5b391,#e3d2ad 48%,#b9a17b); box-shadow:inset 0 0 30px #69533844; }
+.fold { position:absolute; inset:0; z-index:3; pointer-events:none; }
+.fold-left { clip-path:polygon(0 0,52% 57%,0 100%); background:linear-gradient(100deg,#d9c6a0,#b69f77); }
+.fold-right { clip-path:polygon(100% 0,48% 57%,100% 100%); background:linear-gradient(260deg,#d1bd96,#ab936c); }
+.fold-bottom { clip-path:polygon(0 100%,50% 40%,100% 100%); background:linear-gradient(0deg,#d5c19a,#c6ad82); }
+.envelope-flap { position:absolute; z-index:5; inset:0 0 38%; clip-path:polygon(0 0,100% 0,50% 100%); transform-origin:50% 0; background:linear-gradient(160deg,#e8d7b6,#b8a07a); filter:drop-shadow(0 3px 2px #58462f66); backface-visibility:visible; }
+.seal { position:absolute; z-index:6; top:43%; left:44%; width:12%; aspect-ratio:1; display:grid; place-items:center; border-radius:48% 53% 47% 51%; border:3px double #783a2c; background:radial-gradient(circle at 35% 25%,#994939,#541f19 80%); color:#c08865; box-shadow:2px 4px 5px #25100899,inset 1px 1px 2px #ca755c77; font-size:clamp(20px,2.1vw,36px); text-shadow:1px 1px #28130d; }
+.envelope-brand { position:absolute; z-index:4; bottom:11%; left:7%; font-size:clamp(16px,1.35vw,25px); color:#645032; letter-spacing:.12em; }
+.envelope-recipient { position:absolute; z-index:4; bottom:11%; right:8%; color:#685638; font-size:clamp(14px,1.1vw,21px); letter-spacing:.3em; }
+.envelope-instruction { margin:40px 0 0; color:#aaa08e; letter-spacing:.25em; font-size:17px; }
+.envelope-shadow { position:absolute; top:65%; left:28%; width:44%; height:4%; border-radius:50%; background:#000; filter:blur(18px); }
+.mini-letter { position:absolute; z-index:2; inset:6% 8%; display:flex; flex-direction:column; align-items:center; gap:12px; padding:18px; background:#eee2c9; color:#59492e; box-shadow:0 0 8px #0005; opacity:0; }
+.mini-letter span { font-size:12px; letter-spacing:.2em; }
+.mini-letter strong { font-size:16px; font-weight:400; }
+.mini-letter i { width:80%; height:1px; background:#b4a38a; }
+.envelope.is-opening .seal { animation:break-seal .24s forwards; }
+.envelope.is-opening .envelope-flap { animation:open-flap .58s .14s forwards; }
+.envelope.is-opening .mini-letter { animation:letter-emerge .65s .48s forwards; }
+dialog { padding:0; border:0; background:transparent; color:#382f25; width:min(640px,90vw); max-height:91svh; overflow:auto; opacity:0; }
+dialog[open] { animation:read-letter .45s ease forwards; }
+dialog::backdrop { background:#000c; backdrop-filter:blur(4px); }
+.letter { position:relative; padding:36px 48px 20px; border:1px solid #a08d6e; background:radial-gradient(ellipse at 10% 10%,#fff8e633,transparent 65%),linear-gradient(110deg,#e0d0ad,#f0e6cd 48%,#e4d5b6); box-shadow:inset 0 0 50px #8d734433,0 20px 70px #000b; }
+.letter::before { content:""; pointer-events:none; position:absolute; inset:12px; border:1px solid #9c866b44; }
+.letter:focus { outline:none; }
+.letter header { text-align:center; }
+.company { margin:0 0 12px; color:#705839; font-size:20px; letter-spacing:.4em; padding-left:.4em; }
+h1 { font-size:26px; font-weight:400; letter-spacing:.12em; margin:0; }
+.letter-rule { width:100%; height:3px; border-top:1px solid #90744a; border-bottom:1px solid #90744a66; margin:20px 0 25px; }
+.letter-body { font-size:17px; line-height:1.9; letter-spacing:.035em; }
+.letter-body>p { margin:0 0 16px; text-indent:2em; }
+.letter-body .salutation,.letter-body .courtesy { text-indent:0; }
+.meeting { padding:12px 0; margin:20px 0; border-top:1px solid #ad997666; border-bottom:1px solid #ad997666; font-size:16px; }
+.meeting p { margin:0; }
+.meeting span { display:inline-block; margin-right:16px; color:#79613f; }
+.signature { margin-top:20px; text-align:right; padding-right:4px; }
+.signature p { margin:0; }
+.letter footer { display:flex; justify-content:center; margin:22px 0 0; padding-top:14px; border-top:1px solid #ad997655; }
+#close-invitation { border:0; padding:9px 18px; color:#57442c; background:transparent; letter-spacing:.12em; font-size:16px; }
+#close-invitation:hover { background:#b8a38233; }
+#close-invitation:focus-visible { outline-color:#79613f; }
+@keyframes envelope-arrive { from { opacity:0; transform:translateY(18px); } to { opacity:1; transform:translateY(0); } }
+@keyframes break-seal { to { opacity:0; transform:translateY(10px) scale(.85); } }
+@keyframes open-flap { 0% { transform:rotateX(0); z-index:5; } 65% { z-index:5; } 100% { transform:rotateX(180deg); z-index:1; } }
+@keyframes letter-emerge { 0% { opacity:1; transform:translateY(0); } 70% { opacity:1; transform:translateY(-65%); } 100% { opacity:0; transform:translateY(-76%) scale(1.12); } }
+@keyframes read-letter { from { opacity:0; transform:translateY(16px) scale(.96); } to { opacity:1; transform:translateY(0) scale(1); } }
+@media (prefers-reduced-motion:reduce) { *,*::before,*::after { animation-duration:.01ms!important; animation-delay:0ms!important; transition-duration:.01ms!important; } }
+
+.invitation-start { position:absolute; z-index:12; inset:0; display:grid; align-content:center; justify-items:center; gap:20px; background:#000; }
+.invitation-start button { min-width:150px; padding:12px 24px; border:1px solid #ffffff55; background:transparent; color:#e5dfd2; font-size:20px; letter-spacing:.2em; }
+.invitation-start p { color:#888176; font-size:14px; }
+#depart-invitation { border:0; padding:9px 18px; color:#57442c; background:transparent; letter-spacing:.12em; font-size:16px; }
+#depart-invitation:hover { background:#b8a38233; }
+#depart-invitation:focus-visible { outline-color:#79613f; }
+
+/* The invitation keeps its folds and animation, with a quieter letter stock. */
+.mini-letter { background:var(--archive-paper,#cfc3ab); color:var(--archive-paper-muted,#6b604f); }
+.letter { color:var(--archive-paper-ink,#2f2a23); border-color:var(--archive-paper-rule,#82745b); background:radial-gradient(ellipse at 10% 10%,#bda77a0b,transparent 65%),linear-gradient(110deg,var(--archive-paper-alt,#c3b69b),var(--archive-paper-light,#d8ceb9) 48%,var(--archive-paper,#cfc3ab)); }

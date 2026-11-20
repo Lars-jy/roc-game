@@ -1,0 +1,32 @@
+/* Persistent real scene layers replace cross-document snapshots. */
+@view-transition { navigation: none; }
+
+:root[data-scene-navigation] { background: #090b0e; }
+
+body.scene-host-root {
+  display: block !important;
+  position: relative;
+  padding: 0 !important;
+  overflow: clip !important;
+  background-color: #090b0e;
+}
+.scene-host-root > .scene-host-layer {
+  position: fixed !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  margin: 0 !important;
+  border: 0 !important;
+  overflow: clip;
+  isolation: isolate;
+  transform: translate3d(0,0,0);
+  backface-visibility: hidden;
+}
+.scene-host-frame { display: block; background: #090b0e; }
+/* Containers are focused only to enter a scene, never as an actionable control. */
+.scene-host-frame:focus,
+[data-scene-focus-anchor]:focus { outline: none; }
+.scene-host-base { min-width: 0; min-height: 0; }
+.scene-host-layer.scene-host-moving { will-change: transform, opacity; }
+.scene-host-layer.scene-host-blackboard { box-shadow: 0 30px 85px #000b; }
+.scene-host-layer[inert] { pointer-events: none !important; }

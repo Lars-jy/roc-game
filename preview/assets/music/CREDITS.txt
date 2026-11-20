@@ -1,0 +1,33 @@
+R.O.C — Music Credits
+
+"Darkest Child" Kevin MacLeod (incompetech.com)
+Licensed under Creative Commons: By Attribution 4.0 License
+https://creativecommons.org/licenses/by/4.0/
+https://incompetech.com/music/royalty-free/index.html?isrc=USUAN1100783
+Adaptation: main menu uses the original speed/pitch. Calendar April/May play at 0.90 speed with pitch following the slower playback (approximately -1.824 semitones), at 65% extra gain. No EQ.
+
+'Intervention' (No Piano Melody mix) by Scott Buckley — released under CC-BY 4.0.
+https://www.scottbuckley.com.au/library/intervention/
+Reception/character interviews: original speed/pitch, runtime gain factor 0.75, no EQ.
+
+'In Search Of Solitude' by Scott Buckley — released under CC-BY 4.0.
+https://www.scottbuckley.com.au/library/in-search-of-solitude/
+
+'Signal to Noise' (No Piano Melody mix) by Scott Buckley — released under CC-BY 4.0.
+https://www.scottbuckley.com.au/library/signal-to-noise/
+
+'Anabasis I' by Scott Buckley — released under CC-BY 4.0.
+https://www.scottbuckley.com.au/library/anabasis-i/
+
+'Katabasis I' by Scott Buckley — released under CC-BY 4.0.
+https://www.scottbuckley.com.au/library/katabasis-i/
+
+'The Long Dark' by Scott Buckley — released under CC-BY 4.0.
+https://www.scottbuckley.com.au/library/the-long-dark/
+
+Artist: www.scottbuckley.com.au
+License: https://creativecommons.org/licenses/by/4.0/
+Use terms: https://www.scottbuckley.com.au/library/using-this-music/
+
+Original official MP3s. In-game attenuation, fades and complete-track replay. Darkest Child also uses the April/May playback treatment stated above.
+No edits to the game's pre-existing reference ending audio.

@@ -1,0 +1,395 @@
+/*
+ * Reference card construction: a 549:607 photograph paper sits above a second,
+ * slightly narrower sheet carrying the questions. Keep the outside article clear.
+ * Loaded after workbench.css and review.css.
+ */
+body.investigation-app .investigation-card.photo-sheet {
+  width: 250px;
+  min-width: 250px;
+  max-width: 250px;
+  height: auto;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  overflow: visible;
+}
+body.investigation-app .investigation-card.photo-sheet::before,
+body.investigation-app .investigation-card.photo-sheet::after {
+  display: none;
+}
+body.investigation-app .review-grid .investigation-card.photo-sheet {
+  width: 250px;
+  transform: none;
+}
+
+/* Upper photograph paper. 250 / 549 * 607 = 276.4117px. */
+body.investigation-app .investigation-card.photo-sheet > .card-drag-handle {
+  position: relative;
+  z-index: 3;
+  display: block;
+  width: 100%;
+  height: 276.412px;
+  min-height: 276.412px;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  overflow: visible;
+  border: 1px solid #a4a799;
+  border-radius: 0;
+  background:
+    repeating-conic-gradient(#777c6d27 0 25%,transparent 0 50%) 0 0/3px 3px,
+    radial-gradient(circle,#454a3317 .6px,transparent .85px) 1px 1px/4px 4px,
+    linear-gradient(132deg,#e1e2d7,#d3d6cb 62%,#dcded3);
+  box-shadow:
+    inset 0 0 0 1px #f4f4e78f,
+    0 2px 0 #92988a,
+    1px 4px 0 #353a30,
+    3px 7px 5px #0008;
+}
+body.investigation-app .investigation-card.photo-sheet > .card-drag-handle::after {
+  content: '';
+  position: absolute;
+  inset: 3px;
+  border: 1px solid #faf8e424;
+  pointer-events: none;
+}
+
+/* Every task uses the same square image, including all three person cards. */
+body.investigation-app .investigation-card.photo-sheet > .card-drag-handle > .card-photo,
+body.investigation-app .review-grid .investigation-card.photo-sheet.kind-person > .card-drag-handle > .card-photo {
+  position: absolute;
+  left: 8.56%;
+  top: 4.94%;
+  width: 82.7%;
+  height: auto;
+  min-height: 0;
+  max-height: none;
+  aspect-ratio: 1;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  box-shadow: 0 0 0 1px #72786875;
+  overflow: hidden;
+  background: #222621;
+}
+body.investigation-app .investigation-card.photo-sheet .card-photo button {
+  display: block;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+}
+body.investigation-app .investigation-card.photo-sheet .card-photo img,
+body.investigation-app .review-grid .investigation-card.photo-sheet.kind-person .card-photo img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  max-height: none;
+  margin: 0;
+  object-fit: cover;
+  object-position: 50% 0%;
+  filter: none;
+}
+body.investigation-app .investigation-card.photo-sheet > .card-drag-handle > .card-name {
+  position: absolute;
+  left: 6px;
+  right: 6px;
+  top: 79.5%;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: auto;
+  min-height: 0;
+  margin: 0;
+  padding: 0 3px 2px;
+  border: 0;
+  color: #20241d;
+  font-family: 'Microsoft YaHei','Noto Sans SC','PingFang SC',sans-serif;
+  font-size: 25px;
+  font-weight: 900;
+  line-height: 1.1;
+  letter-spacing: .01em;
+  text-align: center;
+  text-shadow: .35px .2px #20241d;
+}
+body.investigation-app .investigation-card.photo-sheet .card-serial,
+body.investigation-app .investigation-card.photo-sheet .card-subtitle,
+body.investigation-app .investigation-card.photo-sheet > .card-footer {
+  display: none;
+}
+body.investigation-app .investigation-card.support-card.photo-sheet .card-name { font-size:18px; line-height:1.35; }
+
+/* Lower task paper. 521 / 549 wide, offset 12 / 549 from the left. */
+body.investigation-app .investigation-card.photo-sheet > .question-list {
+  position: relative;
+  z-index: 1;
+  display: block;
+  left: 2.2%;
+  width: 94.8%;
+  height: auto;
+  max-height: none;
+  margin: -3px 0 0;
+  padding: 3px 0 2px;
+  border: 1px solid #888f7d;
+  border-radius: 0;
+  overflow: visible;
+  background:
+    radial-gradient(circle,#46503412 .6px,transparent .85px) 0 0/4px 4px,
+    linear-gradient(117deg,#d2d4c8,#c5c9bd 57%,#d3d6cb);
+  box-shadow:
+    inset 0 0 0 1px #f0f2e049,
+    0 2px 0 #9ca38f,
+    1px 4px 0 #343c2d,
+    3px 7px 6px #0009;
+  transform: translateX(.6px) rotate(.12deg);
+  transform-origin: 50% 0;
+  list-style: none;
+}
+body.investigation-app .investigation-card.photo-sheet .question-row,
+body.investigation-app .review-grid .investigation-card.photo-sheet .question-row {
+  position: relative;
+  width: 100%;
+  height: auto;
+  min-height: 46px;
+  max-height: none;
+  margin: 0;
+  padding: 10px 35px 10px 30px;
+  border-top: 1px solid #6c75502a;
+  overflow: visible;
+  font-size: 15px;
+  line-height: 1.55;
+}
+body.investigation-app .investigation-card.photo-sheet .question-row:first-child {
+  border-top: 0;
+}
+body.investigation-app .investigation-card.photo-sheet .question-row::before {
+  content: '';
+  position: absolute;
+  left: 11px;
+  top: 18px;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #20271c;
+}
+body.investigation-app .investigation-card.photo-sheet .question-text,
+body.investigation-app .review-grid .investigation-card.photo-sheet .question-text {
+  display: block;
+  margin: 0;
+  padding: 0;
+  color: #30382a;
+  font-family: 'Microsoft YaHei','Noto Sans SC','PingFang SC',sans-serif;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 1.55;
+  letter-spacing: 0;
+  white-space: normal;
+  overflow: visible;
+  overflow-wrap: anywhere;
+}
+body.investigation-app .investigation-card.photo-sheet .question-control {
+  margin: 0;
+  padding-top: 7px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px 8px;
+}
+body.investigation-app .investigation-card.photo-sheet .number-field {
+  flex-wrap: wrap;
+  gap: 3px;
+  max-width: 100%;
+  white-space: normal;
+}
+body.investigation-app .investigation-card.photo-sheet .number-field > span { font-size: 11px; }
+body.investigation-app .investigation-card.photo-sheet .number-input { width: 62px; height: 26px; font-size: 13px; }
+body.investigation-app .investigation-card.photo-sheet .question-port {
+  right: 9px;
+  top: 14px;
+  width: 17px;
+  height: 17px;
+}
+body.investigation-app .investigation-card.photo-sheet .question-state.correct {
+  position: absolute;
+  left: 8px;
+  right: auto;
+  top: 10px;
+  width: 14px;
+  height: 22px;
+  margin: 0;
+  padding: 0;
+  color: #97513f;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 22px;
+}
+body.investigation-app .investigation-card.photo-sheet .question-row.correct::before { display: none; }
+body.investigation-app .investigation-card.photo-sheet .linked-chips { margin-left: 0; }
+body.investigation-app .investigation-card.photo-sheet > .node-port {
+  left: 8px;
+  top: 8px;
+  z-index: 24;
+}
+body.investigation-app .investigation-card.photo-sheet > .task-stamp,
+body.investigation-app .review-grid .investigation-card.photo-sheet.kind-person > .task-stamp {
+  right: -3px;
+  top: 206px;
+  width: 76px;
+  height: 76px;
+  font-size: 58px;
+  z-index: 25;
+}
+
+/* A gallery changes column count, never the dimensions of a photograph paper. */
+body.investigation-app .review-grid {
+  grid-template-columns: repeat(4,250px);
+  justify-content: center;
+  align-items: start;
+  max-width: none;
+  column-gap: 38px;
+  row-gap: 52px;
+}
+body.investigation-app.sheet-view .review-grid {
+  grid-template-columns: repeat(4,250px);
+  column-gap: 32px;
+  row-gap: 35px;
+}
+@media (max-width: 1220px) {
+  body.investigation-app:not(.sheet-view) .review-grid { grid-template-columns: repeat(3,250px); column-gap: 38px; }
+}
+
+/* Readable document-sheet titles on the desk; library thumbnails stay compact. */
+body.investigation-app #board-nodes .support-card.kind-document .document-thumb {
+  width: 100%;
+  height: 100%;
+  padding: 18px 14px 12px;
+  background: #f3f3e9;
+}
+body.investigation-app #board-nodes .support-card.kind-document .document-thumb > span {
+  display: block;
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  margin: 0;
+  padding: 1px 0 9px;
+  border-bottom: 1px solid #58614a7d;
+  color: #30382a;
+  background: #f3f3e9;
+  font-family: 'Microsoft YaHei','Noto Sans SC','PingFang SC',sans-serif;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 1.5;
+  letter-spacing: .015em;
+  text-align: center;
+  overflow-wrap: anywhere;
+}
+body.investigation-app #board-nodes .support-card.kind-document .document-thumb::before {
+  inset: 91px 14px 14px;
+  background: repeating-linear-gradient(0deg,#646d5540 0 .8px,transparent .8px 9px);
+}
+body.investigation-app #board-nodes .support-card.kind-document .document-thumb::after {
+  top: 10px;
+  left: 14px;
+  right: 14px;
+  height: 1px;
+  background: #626d4f52;
+}
+
+/* The short evidence slips scale by 235 / 180, independently of photo sheets. */
+body.investigation-app .investigation-card.support-card.note-card {
+  width: 235px;
+  min-width: 235px;
+  max-width: 235px;
+  font-size: 18px;
+  box-shadow: 1px 3px 0 #87917a,3px 6px 0 #323a2b,5px 10px 9px #0009;
+}
+body.investigation-app .investigation-card.support-card.note-card > .card-drag-handle {
+  padding: 8px 12px 0;
+}
+body.investigation-app .investigation-card.support-card.note-card .card-name {
+  min-height: 67px;
+  height: auto;
+  margin: 0;
+  padding: 10px 12px 10px 24px;
+  color: #2e3528;
+  font-family: 'Microsoft YaHei','Noto Sans SC','PingFang SC',sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1.55;
+  letter-spacing: .015em;
+}
+body.investigation-app .investigation-card.support-card.note-card > .card-note {
+  margin: 0;
+  padding: 0 16px 13px;
+  color: #58634a;
+  font-size: 14px;
+  line-height: 1.7;
+}
+body.investigation-app .investigation-card.support-card.note-card > .card-footer {
+  min-height: 30px;
+  height: auto;
+  padding: 8px 12px;
+  font-size: 12px;
+  line-height: 1.5;
+}
+body.investigation-app .investigation-card.support-card.note-card > .card-footer button {
+  font-size: 13px;
+  line-height: 1.4;
+}
+body.investigation-app .investigation-card.support-card.note-card > .node-port {
+  width: 25px;
+  height: 25px;
+  left: 7px;
+  top: 7px;
+}
+
+/* Conversation slips keep their accepted 235 × 148px paper dimensions. */
+body.investigation-app .investigation-card.support-card.note-card.kind-note {
+  height: 148px;
+  min-height: 148px;
+  display: grid;
+  grid-template-rows: 75px 36px minmax(0,1fr);
+}
+body.investigation-app .support-card.note-card.kind-note .card-name {
+  font-size: 24px;
+  line-height: 1.2;
+}
+body.investigation-app .support-card.note-card.kind-note > .card-note {
+  font-size: 17px;
+  line-height: 1.3;
+}
+body.investigation-app .support-card.note-card.kind-note > .card-footer {
+  min-height: 0;
+  padding: 5px 12px;
+  font-size: 14px;
+  line-height: 1.4;
+}
+body.investigation-app .support-card.note-card.kind-note > .card-footer button {
+  font-size: 16px;
+  line-height: 1.4;
+}
+
+/* Paper tones only; the reference photograph/task-strip proportions stay fixed. */
+body.investigation-app .investigation-card.photo-sheet > .card-drag-handle {
+  border-color:var(--archive-paper-rule,#82745b);
+  background:repeating-conic-gradient(#63563d13 0 25%,transparent 0 50%) 0 0/3px 3px,linear-gradient(132deg,var(--archive-paper-light,#d8ceb9),var(--archive-paper,#cfc3ab) 62%,var(--archive-paper,#cfc3ab));
+  box-shadow:inset 0 0 0 1px #bcae918f,0 2px 0 #8b7e68,1px 4px 0 #353029,3px 7px 5px #0008;
+}
+body.investigation-app .investigation-card.photo-sheet > .question-list {
+  border-color:var(--archive-paper-rule,#82745b);
+  background:radial-gradient(circle,#57472f0b .6px,transparent .85px) 0 0/4px 4px,linear-gradient(117deg,var(--archive-paper,#cfc3ab),var(--archive-paper-alt,#c3b69b) 57%,var(--archive-paper,#cfc3ab));
+  box-shadow:inset 0 0 0 1px #b5a68b49,0 2px 0 #897b63,1px 4px 0 #343027,3px 7px 6px #0009;
+}
+body.investigation-app .investigation-card.photo-sheet > .card-drag-handle > .card-name,
+body.investigation-app .investigation-card.photo-sheet .question-text,
+body.investigation-app .review-grid .investigation-card.photo-sheet .question-text,
+body.investigation-app .investigation-card.support-card.note-card .card-name { color:var(--archive-paper-ink,#2f2a23); }
+body.investigation-app .investigation-card.support-card.note-card > .card-note { color:var(--archive-paper-muted,#6b604f); }
+body.investigation-app #board-nodes .support-card.kind-document .document-thumb,
+body.investigation-app #board-nodes .support-card.kind-document .document-thumb > span { color:var(--archive-paper-ink,#2f2a23); background:var(--archive-paper,#cfc3ab); }

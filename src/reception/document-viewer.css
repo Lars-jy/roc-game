@@ -1,0 +1,28 @@
+.dv-overlay { position: fixed; inset: 0; z-index: 100; background: rgba(0,0,0,.79); color: #f0e9dd; font-family: "SimSun", "Songti SC", "STSong", serif; }
+.dv-shell { width: min(94vw, 1320px); height: 96svh; margin: 2svh auto; display: flex; flex-direction: column; }
+.dv-header { min-height: 64px; display: flex; align-items: center; justify-content: space-between; gap: 24px; padding: 0 12px 8px; }
+.dv-heading { min-width: 0; }
+.dv-eyebrow { display: block; font-size: 12px; letter-spacing: .15em; color: #b9afa1; margin-bottom: 5px; }
+.dv-heading h2 { margin: 0; color: #f0e9dd; font: 400 clamp(17px,1.5vw,23px)/1.4 "SimSun", "Songti SC", "STSong", serif; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.dv-tools { display: flex; flex-shrink: 0; gap: 8px; align-items: center; }
+.dv-button { appearance: none; border: 0; border-radius: 0; background: transparent; color: #e8e5df; min-height: 37px; padding: 7px 13px; font: 400 15px/1.2 "SimSun", "Songti SC", "STSong", serif; cursor: pointer; transition: background .15s, border-color .15s; }
+.dv-button:not(.paper-choice):hover { background: #e7e2d518; color: #fff; }
+.dv-button:focus-visible, .dv-viewport:focus-visible { outline: 1px solid #f2efe8; outline-offset: 3px; }
+.dv-icon { width: 37px; min-width: 37px; padding: 0; border: 1px solid #dedbd27d; border-radius: 50%; font-family: Georgia, serif; font-size: 22px; }
+.dv-icon:hover { border-color: #f2efe8; }
+.dv-close { margin-left: 8px; border-color: transparent; font-size: 27px; }
+.dv-percentage { font: 14px/1.2 system-ui,sans-serif; min-width: 45px; text-align: center; color: #e0d7ca; }
+.dv-viewport { flex: 1; min-height: 0; position: relative; overflow: hidden; cursor: grab; touch-action: none; overscroll-behavior: contain; user-select: none; }
+.dv-viewport.dv-dragging { cursor: grabbing; }
+.dv-paper { position: absolute; top: 0; left: 0; transform-origin: 0 0; will-change: transform; display: flex; flex-direction: column; gap: 20px; }
+.dv-page { display: block; width: 800px; max-width: none; height: auto; background: #fff; box-shadow: 0 12px 40px #000b; flex-shrink: 0; pointer-events: none; -webkit-user-drag: none; }
+.dv-loading { position: absolute; top: 36%; left: 50%; margin: 0; transform: translateX(-50%); padding: 14px 24px; color: #f2eadf; background: #17130fe8; font-size: 16px; white-space: nowrap; pointer-events: none; }
+.dv-footer { display: flex; min-height: 62px; align-items: center; justify-content: space-between; gap: 20px; padding: 10px 12px 0; }
+.dv-footer p { margin: 0; font: 13px/1.6 system-ui,sans-serif; color: #c4baaa; }
+.dv-continue { font-size: 18px; min-width: 135px; min-height: 45px; letter-spacing: .08em; }
+.dv-continue .choice-mark { margin-left: 12px; }
+@media (max-width: 900px) { .dv-shell { width: 96vw; } .dv-header { gap: 12px; padding-inline: 4px; } .dv-tools { gap: 5px; } .dv-footer { padding-inline: 4px; } .dv-footer p { max-width: 65%; font-size: 11px; } }
+@media (max-height: 620px) { .dv-header { min-height: 52px; } .dv-eyebrow { display: none; } .dv-footer { min-height: 52px; padding-top: 6px; } }
+
+/* Raster originals retain all text and proportions; tint them only at display. */
+.dv-page { background:var(--archive-paper,#cfc3ab); filter:var(--archive-document-filter,sepia(.6) saturate(.75) brightness(.8)); }

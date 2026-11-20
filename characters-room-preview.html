@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#0c1118">
+  <title>R.O.C · 会客室 · 人物</title>
+  <link rel="stylesheet" href="./src/characters-room-preview.css">
+  <link rel="stylesheet" href="./src/scene-navigation.css">
+  <script type="module" src="./src/scene-navigation.js" blocking="render"></script>
+  <link rel="stylesheet" href="./src/paper-theme.css">
+  <link rel="stylesheet" href="./src/roc-theme.css">
+</head>
+<body inert>
+  <main id="room" class="room-view" data-mode="roster">
+    <div class="room-background" aria-hidden="true"></div>
+    <div class="room-background-lit" aria-hidden="true"></div>
+    <header class="room-heading">
+      <p>人物</p>
+      <h1>会客室</h1>
+    </header>
+    <a id="scene-return" class="scene-return" href="./board-receipt-preview.html" aria-label="返回桌面">
+      <span class="scene-return-triangle" aria-hidden="true"></span>
+      <span class="scene-return-label" aria-hidden="true">返回问答</span>
+    </a>
+
+    <section id="roster" class="roster" aria-label="选择交谈人物">
+      <button type="button" class="character has-new" data-character="lu" aria-label="陆衡">
+        <span class="light-beam" aria-hidden="true"></span>
+        <img class="shadow-portrait" src="./assets/characters-dialogue-v1/lu-hip-v1.png" alt="陆衡" width="1024" height="1536" draggable="false">
+        <img class="lit-portrait" src="./assets/characters-dialogue-v1/lu-hip-v1.png" alt="" aria-hidden="true" width="1024" height="1536" draggable="false">
+        <span class="character-name">陆衡</span>
+      </button>
+      <button type="button" class="character" data-character="zhou" aria-label="周岚">
+        <span class="light-beam" aria-hidden="true"></span>
+        <img class="shadow-portrait" src="./assets/characters-dialogue-v1/zhou-hip-v1.png" alt="周岚" width="1024" height="1536" draggable="false">
+        <img class="lit-portrait" src="./assets/characters-dialogue-v1/zhou-hip-v1.png" alt="" aria-hidden="true" width="1024" height="1536" draggable="false">
+        <span class="character-name">周岚</span>
+      </button>
+      <button type="button" class="character has-new" data-character="lin" aria-label="林乔">
+        <span class="light-beam" aria-hidden="true"></span>
+        <img class="shadow-portrait" src="./assets/characters-dialogue-v1/lin-hip-v1.png" alt="林乔" width="1024" height="1536" draggable="false">
+        <img class="lit-portrait" src="./assets/characters-dialogue-v1/lin-hip-v1.png" alt="" aria-hidden="true" width="1024" height="1536" draggable="false">
+        <span class="character-name">林乔</span>
+      </button>
+      <button type="button" class="character customer-silhouette has-new" data-character="customer-d" aria-label="客户丁">
+        <span class="light-beam" aria-hidden="true"></span>
+        <img class="shadow-portrait" src="./assets/characters-dialogue-v1/unknown-hip-v1.png" alt="客户丁的剪影" width="1024" height="1536" draggable="false">
+        <img class="lit-portrait" src="./assets/characters-dialogue-v1/unknown-hip-v1.png" alt="" aria-hidden="true" width="1024" height="1536" draggable="false">
+        <span class="face-mark" aria-hidden="true">丁</span>
+        <span class="character-name">客户丁</span>
+      </button>
+    </section>
+
+    <aside id="conversation" class="talk-panel" aria-label="人物交谈" hidden>
+      <header class="talk-header"><h2 id="speaker-name"></h2></header>
+      <div id="dialogue-log" class="dialogue-log" tabindex="0" aria-label="此前对白"></div>
+      <div class="current-dialogue">
+        <span id="current-speaker" class="current-speaker"></span>
+        <p id="current-line" class="current-line" aria-live="polite"></p>
+      </div>
+      <div id="topic-list" class="topic-list" aria-label="可交谈话题"></div>
+      <button type="button" id="player-reply" class="player-reply" hidden></button>
+    </aside>
+  </main>
+  <script type="module" src="./src/characters-room-preview.js"></script>
+</body>
+</html>

@@ -1,0 +1,23 @@
+const drawings = {
+  cash: '<path d="m8 24 35-11 15 21-35 12Z" fill="#d2c7ad"/><path d="m8 31 15 21 35-12M8 37l15 21 35-12"/><path d="m14 26 26-8 11 14-26 8Z"/><ellipse cx="33" cy="29" rx="7" ry="5" transform="rotate(-18 33 29)"/><path d="m29 22 7 13M26 26l10-3m-8 9 10-3"/>',
+  coin: '<ellipse cx="31" cy="40" rx="21" ry="11" fill="#b0a083"/><path d="M10 40v7c0 15 42 15 42 0v-7M14 47v6m7-4v7m8-6v8m9-8v7m8-10v6"/><ellipse cx="33" cy="23" rx="19" ry="19" fill="#d5c8aa"/><circle cx="33" cy="23" r="14"/><path d="m28 16 5 6 5-6m-5 6v11m-6-10h12m-12 5h12"/>',
+  lens: '<circle cx="26" cy="25" r="18" fill="#b3b0a0"/><circle cx="26" cy="25" r="13" fill="#dad7c6"/><path d="m39 39 17 17-6 6-17-18Z" fill="#6e302a"/><path d="M19 17c-4 2-6 6-5 10" stroke="#f3ebd7" stroke-width="3"/>',
+  phone: '<path d="M15 31h34l9 20v6H6v-6Z" fill="#6c685b"/><path d="m17 31 5-15h20l5 15M18 16c-6 4-10 4-10-2 0-14 48-14 48 0 0 6-5 6-10 2" fill="#3f3c35"/><circle cx="32" cy="42" r="10" fill="#c3b89e"/><circle cx="32" cy="42" r="4"/><path d="M24 39h2m2-5 1 2m7-2-1 2m5 3-2 1m0 6-2-1m-8 4 1-2"/>',
+  folder: '<path d="M10 17h17l5 6h24v32H9Z" fill="#9b917c"/><path d="m17 10 18 1 3 6 16 1-1 33H15Z" fill="#ddd1b7"/><path d="M22 6h20v38H19Z" fill="#c6bfab"/><path d="m29 10 10 1m-11 5 11 1m-12 5 10 1"/><path d="m10 28 12-1 4 5 32-2-5 27H6Z" fill="#b7ac95"/><path d="m12 32 10-1" stroke="#7e302c" stroke-width="4"/>',
+  ledger: '<path d="m13 8 38 2v47l-38-3Z" fill="#cbbda0"/><path d="m7 12 6-4v46l-6 4Z" fill="#4b4a40"/><path d="M13 54 7 58l43 2 1-3M19 20l25 1m-25 7 25 1m-25 7 25 1m-25 7 18 1"/><path d="M16 8v46" stroke="#7d3430" stroke-width="4"/>',
+  shield: '<path d="M32 6c8 6 15 8 22 8v19c-2 12-10 21-22 27C20 54 12 45 10 33V14c7 0 14-2 22-8Z" fill="#8b8a77"/><path d="M32 12c6 4 11 6 16 6v14c-2 9-7 16-16 22-9-6-14-13-16-22V18c5 0 10-2 16-6Z" fill="#c8c6af"/><path d="m23 32 7 8 13-17" stroke-width="4"/>',
+  letter: '<path d="m6 17 49-5 4 40-49 6Z" fill="#d3c8ae"/><path d="m6 17 26 16 23-21M10 58l17-28m32 22L37 30"/><circle cx="35" cy="38" r="10" fill="#7b302c"/><path d="m32 33 6 8m-6 0 6-8" stroke="#ba8c75"/>',
+  arrow: '<path d="M51 32H12m17-17L12 32l17 17"/>',
+  undo: '<path d="M24 12 8 27l16 14M9 27h27c21 0 21 28 3 28"/>',
+  shuffle: '<path d="M8 17h9c14 0 17 30 30 30h10M8 47h9c14 0 17-30 30-30h10M47 7l10 10-10 10m0 10 10 10-10 10"/>',
+  book: '<path d="M32 15C23 8 12 10 5 12v39c9-3 19-2 27 4 8-6 18-7 27-4V12c-7-2-18-4-27 3Zm0 0v40M12 22l12 1m-12 9 12 1m16-10 12-1m-12 11 12-1"/>',
+  eye: '<path d="M4 32S15 14 32 14s28 18 28 18-11 18-28 18S4 32 4 32Z"/><circle cx="32" cy="32" r="9"/>',
+  close: '<path d="m16 16 32 32m0-32L16 48"/>',
+  check: '<path d="m12 33 13 13 28-29"/>',
+  lock: '<rect x="13" y="27" width="38" height="29" rx="3" fill="currentColor" fill-opacity=".12"/><path d="M21 27V17a11 11 0 0 1 22 0v10m-11 12v8"/>',
+  help: '<circle cx="32" cy="32" r="25"/><path d="M23 24c0-13 22-13 19 1-1 6-10 6-10 15m0 7v2"/>',
+  reset: '<path d="M12 24a23 23 0 1 1 1 24M12 8v16h16"/>',
+  chevron: '<path d="m23 12 19 20-19 20"/>',
+  grid: '<rect x="8" y="8" width="19" height="19" rx="2"/><rect x="37" y="8" width="19" height="19" rx="2"/><rect x="8" y="37" width="19" height="19" rx="2"/><rect x="37" y="37" width="19" height="19" rx="2"/>',
+};
+export function icon(name, className = '') { return `<svg class="icon ${className}" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${drawings[name] || drawings.folder}</svg>`; }

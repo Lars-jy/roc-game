@@ -1,0 +1,50 @@
+/* The final statement uses the same archival paper as the evidence. */
+.document-modal:has(> .chapter-summary) {
+  width:min(850px,94vw); height:92svh; max-height:92svh;
+  border:1px solid #8a795e; color:var(--archive-paper-ink,#2f2a23);
+  background:var(--archive-paper,#cfc3ab);
+  box-shadow:inset 0 0 35px #65503216,3px 12px 35px #000a;
+  font-family:SimSun,'Songti SC','STSong',serif;
+}
+.document-modal:has(> .chapter-summary)::after { display:none; }
+.document-modal:has(> .chapter-summary) > .modal-header {
+  min-height:56px; padding:10px 30px; background:#7160470b;
+  border-bottom:1px solid #82745b60;
+}
+.document-modal:has(> .chapter-summary) > .modal-header h2 { color:var(--archive-paper-muted,#5c5142); font-size:16px; letter-spacing:.12em; }
+.document-modal:has(> .chapter-summary) .close-button { color:var(--archive-paper-muted,#5c5142); }
+.chapter-summary.modal-content { display:flex; flex-direction:column; overflow:hidden; width:100%; max-width:none; padding:0; margin:0; }
+.summary-report-heading { flex:none; padding:21px 42px 18px; }
+.summary-report-kicker { margin:0 0 7px; text-align:center; color:var(--archive-paper-muted,#5c5142); font-size:12px; letter-spacing:.18em; }
+.summary-report-heading h3 { margin:0 0 19px; text-align:center; color:var(--archive-paper-ink,#2f2a23); font-size:29px; font-weight:600; letter-spacing:.18em; }
+.summary-report-meta { display:flex; justify-content:space-between; gap:20px; padding-bottom:12px; border-bottom:1px solid var(--archive-paper-rule,#82745b); color:var(--archive-paper-muted,#5c5142); font-size:14px; }
+.summary-report-scroll { flex:1; min-height:0; overflow:auto; padding:0 42px 28px; scrollbar-width:thin; scrollbar-color:#8a795e #bfb298; }
+.summary-progress-note { display:flex; flex-wrap:wrap; gap:7px 18px; align-items:baseline; margin:0 0 23px; }
+.chapter-summary .summary-progress { margin:0; color:var(--archive-paper-ink,#2f2a23); font-size:14px; }
+.chapter-summary .summary-pending { margin:0; color:var(--archive-paper-muted,#5c5142); font-size:13px; line-height:1.65; }
+.chapter-summary .summary-fields { display:grid; gap:27px; margin:0; }
+.summary-ending-note { margin:24px 0 0; color:#7c4938; font-size:16px; text-align:center; }
+.chapter-summary .summary-field { display:grid; gap:11px; }
+.summary-question { display:grid; grid-template-columns:30px 1fr; gap:8px; color:var(--archive-paper-ink,#2f2a23); font-size:17px; line-height:1.8; }
+.summary-field-number { color:#7c4938; font:18px/1.8 Georgia,serif; }
+.chapter-summary .summary-field textarea {
+  display:block; box-sizing:border-box; width:100%; min-height:126px; max-height:45svh; padding:10px 13px;
+  border:1px solid #8a795e79; border-radius:0; box-shadow:inset 0 1px 3px #65503212;
+  background:repeating-linear-gradient(transparent 0 29px,#82745b26 29px 30px) 0 10px/100% 30px,var(--archive-paper-light,#d8ceb9);
+  color:var(--archive-paper-ink,#2f2a23); caret-color:#503b29;
+  font:16px/30px SimSun,'Songti SC','STSong',serif; resize:vertical; color-scheme:light;
+}
+.chapter-summary .summary-field textarea:focus { outline:1px solid #7c6340; outline-offset:2px; background-color:#dcd0b8; }
+.chapter-summary .summary-field textarea:disabled { opacity:.8; color:var(--archive-paper-muted,#5c5142); -webkit-text-fill-color:var(--archive-paper-muted,#5c5142); cursor:default; }
+.summary-report-footer { flex:none; display:flex; justify-content:space-between; align-items:center; gap:16px; min-height:73px; padding:14px 30px; border-top:1px solid #82745b70; background:#bfae8f42; }
+.chapter-summary .summary-actions { margin:0; display:flex; gap:12px; flex:none; }
+.chapter-summary .summary-actions button { padding:10px 16px; border:1px solid #82745b; color:var(--archive-paper-ink,#2f2a23); background:#d8ceb97d; box-shadow:0 2px 3px #65503218; font-family:inherit; font-size:14px; }
+.chapter-summary .summary-actions .summary-submit { color:#e1d4b9; background:#655038; border-color:#655038; }
+.chapter-summary .summary-actions button:disabled { opacity:.4; cursor:default; }
+.chapter-summary .summary-status { color:var(--archive-paper-muted,#5c5142); margin:0; font-size:13px; }
+@media(max-height:740px) {
+  .summary-report-heading { padding-top:15px; padding-bottom:13px; }
+  .summary-report-heading h3 { font-size:26px; margin-bottom:13px; }
+  .summary-report-scroll { padding-inline:32px; }
+  .summary-report-footer { min-height:65px; padding-block:11px; }
+}

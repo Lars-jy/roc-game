@@ -1,0 +1,154 @@
+/* Original etched cover, reconstructed as three angled glass faces.
+   The source pixels stay registered. Moving light is drawn in pane coordinates. */
+.entry-card.roc-prism-title{--prism-x:0;--prism-y:0;--prism-light:0;background:#121518;isolation:isolate;overflow:hidden}
+.prism-art,.prism-layer,.title-glass-canvas,.prism-vignette,.prism-shadow{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;user-select:none}
+.prism-art{z-index:0;overflow:hidden}.prism-layer{display:block;object-fit:fill;-webkit-user-drag:none}
+.prism-art::after{content:'';position:absolute;inset:0;z-index:5;pointer-events:none;opacity:var(--prism-light,0);mix-blend-mode:screen;background:radial-gradient(circle clamp(120px,16cqw,310px) at var(--shine-x,50%) var(--shine-y,50%),rgb(255 247 230 / .24) 0%,rgb(255 250 243 / .11) 34%,rgb(255 255 255 / 0) 77%)}
+.prism-red{z-index:8;opacity:.68;filter:drop-shadow(1px 2px 0 #000c)}
+.prism-source{z-index:1}
+.title-glass-canvas{z-index:3;display:block;mix-blend-mode:screen;-webkit-mask-image:url('../assets/branding/prism-v5/glass-light-scope.svg');mask-image:url('../assets/branding/prism-v5/glass-light-scope.svg');-webkit-mask-size:100% 100%;mask-size:100% 100%;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat}
+.prism-face-edits{position:absolute;inset:0;width:100%;height:100%;z-index:2;pointer-events:none;user-select:none;-webkit-mask-size:100% 100%;mask-size:100% 100%;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat}
+.prism-warm-faces{-webkit-mask-image:url('../assets/branding/prism-v6/warm-face-regions.svg');mask-image:url('../assets/branding/prism-v6/warm-face-regions.svg')}
+.prism-fang-face{-webkit-mask-image:url('../assets/branding/prism-v6/fang-mouth-region.svg');mask-image:url('../assets/branding/prism-v6/fang-mouth-region.svg')}
+/* Only face pixels change. The original cover remains underneath, including
+   the snake's original closed mouth until this exact area is illuminated. */
+.prism-warm-faces .prism-expression-image{-webkit-mask-image:radial-gradient(circle clamp(120px,16cqw,310px) at var(--shine-x,50%) var(--shine-y,50%),rgb(0 0 0 / calc(1 - var(--prism-light,0))) 0% 45%,#000 77%);mask-image:radial-gradient(circle clamp(120px,16cqw,310px) at var(--shine-x,50%) var(--shine-y,50%),rgb(0 0 0 / calc(1 - var(--prism-light,0))) 0% 45%,#000 77%)}
+.prism-fang-face .prism-expression-image{-webkit-mask-image:radial-gradient(circle clamp(120px,16cqw,310px) at var(--shine-x,50%) var(--shine-y,50%),rgb(0 0 0 / var(--prism-light,0)) 0% 45%,transparent 77%);mask-image:radial-gradient(circle clamp(120px,16cqw,310px) at var(--shine-x,50%) var(--shine-y,50%),rgb(0 0 0 / var(--prism-light,0)) 0% 45%,transparent 77%)}
+/* Cast shadows use the already registered portrait alpha. The unshifted
+   silhouettes subtract the people, keeping shadow only on the glass behind. */
+.prism-cast-shadow-scope,.prism-cast-shadow-beam,.prism-cast-shadow{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;user-select:none}
+.prism-cast-shadow-scope{z-index:2;-webkit-mask-image:url('../assets/branding/prism-v5/glass-light-scope.svg'),url('../assets/branding/cover/shadow-alpha.png');mask-image:url('../assets/branding/prism-v5/glass-light-scope.svg'),url('../assets/branding/cover/shadow-alpha.png');-webkit-mask-size:100% 100%;mask-size:100% 100%;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-composite:source-out;mask-composite:subtract}
+.prism-cast-shadow-beam{-webkit-mask-image:radial-gradient(circle clamp(145px,20cqw,390px) at var(--shine-x,50%) var(--shine-y,50%),#000 0% 45%,transparent 100%);mask-image:radial-gradient(circle clamp(145px,20cqw,390px) at var(--shine-x,50%) var(--shine-y,50%),#000 0% 45%,transparent 100%)}
+.prism-cast-shadow{background:#04060a;-webkit-mask-image:url('../assets/branding/cover/shadow-alpha.png');mask-image:url('../assets/branding/cover/shadow-alpha.png');-webkit-mask-size:100% 100%;mask-size:100% 100%;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;filter:blur(clamp(2px,.42cqw,9px))}
+.prism-cast-snake{clip-path:polygon(32% 0,58% 0,58% 26%,60% 31%,55% 43%,50% 65%,46.5% 100%,32% 100%);transform:translate(var(--snake-shadow-x,0px),var(--snake-shadow-y,0px));opacity:var(--snake-shadow-opacity,0)}
+.prism-cast-sheep{clip-path:polygon(58% 12%,80% 12%,82% 41%,77% 52%,80.5% 100%,45% 100%,47% 83%,52% 56%,57% 39%);transform:translate(var(--sheep-shadow-x,0px),var(--sheep-shadow-y,0px));opacity:var(--sheep-shadow-opacity,0)}
+.prism-cast-rabbit{clip-path:polygon(82% 0,100% 0,100% 77%,78% 77%,74.5% 54%,79% 40%);transform:translate(var(--rabbit-shadow-x,0px),var(--rabbit-shadow-y,0px));opacity:var(--rabbit-shadow-opacity,0)}
+.prism-shadow{z-index:7;--focus-radius:clamp(120px,16cqw,310px);background:radial-gradient(circle var(--focus-radius) at var(--shine-x,50%) var(--shine-y,50%),rgb(0 0 0 / var(--spot-core,.52)) 0%,rgb(0 0 0 / var(--spot-mid,.52)) 30%,rgb(0 0 0 / var(--spot-edge,.52)) 73%,rgb(0 0 0 / .52) 100%)}
+.prism-title{z-index:8;filter:drop-shadow(.7px 1px 0 #000c)}
+.prism-crime-accent{z-index:8;filter:drop-shadow(1px 2px 0 #000b)}
+.prism-vignette{z-index:9;background:linear-gradient(90deg,#0506070d,transparent 36%),linear-gradient(0deg,#02030519,transparent 15%)}
+
+/* Pale reflections at the ends of the three existing panes. The same
+   foreground mask keeps the desk, envelope and ledger out of the light. */
+.prism-set-light,
+.prism-glass-fallback {
+  position:absolute;
+  inset:0;
+  z-index:4;
+  mask:url('../assets/branding/prism-v5/glass-light-scope.svg') center / 100% 100% no-repeat;
+  mix-blend-mode:screen;
+}
+.prism-pane {
+  position:absolute;
+  inset:0;
+  clip-path:var(--pane-shape);
+  background:linear-gradient(180deg,var(--pane-top),transparent 34%,transparent 60%,var(--pane-bottom) 76%,transparent 87%);
+}
+.prism-pane-left {
+  --pane-shape:polygon(39.3% 0,61.3% 0,47.2% 87.1%,16.5% 87.1%);
+  --pane-top:#b3c2d02c;
+  --pane-bottom:#5786902c;
+}
+.prism-pane-middle {
+  --pane-shape:polygon(62.2% 0,84.6% 0,74.8% 87.1%,48.1% 87.1%);
+  --pane-top:#f2dac467;
+  --pane-bottom:#a7bacc32;
+}
+.prism-pane-right {
+  --pane-shape:polygon(85.4% 0,100% 0,100% 87.1%,75.6% 87.1%);
+  --pane-top:#8cb1cb5a;
+  --pane-bottom:#8fb2d22c;
+}
+.prism-glass-fallback {
+  display:none;
+  opacity:calc(var(--glass-near,0) * var(--prism-light,0) * .68);
+}
+.roc-prism-title:not([data-glass-ready]) .prism-glass-fallback { display:block; }
+.prism-glass-fallback::after {
+  content:'';
+  position:absolute;
+  inset:0;
+  clip-path:var(--pane-shape);
+  --pane-shape:polygon(62.2% 0,84.6% 0,74.8% 87.1%,48.1% 87.1%);
+  mask:radial-gradient(circle clamp(120px,16cqw,310px) at var(--shine-x,50%) var(--shine-y,50%),#000,transparent 88%);
+  background:linear-gradient(106deg,transparent 60%,#ad79ff44 62%,#8adfef82 64%,#fff3d970 65.5%,#f8c98389 67%,#dc626e38 69%,transparent 70.5%);
+}
+
+.prism-compact-title { display:none; }
+.roc-prism-title .entry-actions {
+  z-index:12;
+  top:53.9%;
+  left:8.25%;
+  width:24.6%;
+  height:30.5%;
+}
+.roc-prism-title .menu-button {
+  font-size:clamp(15px,2.18cqw,48px);
+  letter-spacing:.17em;
+  color:#d4c4ae;
+  text-shadow:0 2px 5px #000,0 0 18px #000a;
+  touch-action:manipulation;
+}
+.roc-prism-title .menu-button::before { display:none; }
+.roc-prism-title .menu-button::after {
+  top:auto;
+  bottom:3%;
+  left:16%;
+  right:auto;
+  width:68%;
+  height:2px;
+  background:linear-gradient(90deg,transparent 0,#93382c 16%,#d36852 51%,#93382c 84%,transparent 100%);
+  box-shadow:0 2px 4px #000e;
+  transform-origin:center;
+  transform:scaleX(.66);
+  transition:opacity .18s ease,transform .27s cubic-bezier(.2,.74,.25,1);
+}
+.roc-prism-title .menu-button:is(:hover,:focus-visible,.is-current):not(:disabled) { color:#f3e0c4; }
+.roc-prism-title .menu-button:is(:hover,:focus-visible,.is-current):not(:disabled)::after { transform:scaleX(1); }
+.roc-prism-title .menu-button:active:not(:disabled)::after { transform:scaleX(.83); }
+.roc-prism-title .menu-button:focus-visible {
+  outline:1px solid #f2d7ad8c;
+  outline-offset:-3px;
+}
+
+@media (max-aspect-ratio:4/5) {
+  #chapter-entry { overflow-y:auto; }
+  .entry-card.roc-prism-title {
+    width:100%;
+    min-height:100svh;
+    aspect-ratio:auto;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    padding:clamp(70px,26svh,92vw) 12px max(24px,env(safe-area-inset-bottom));
+    background:#101012;
+  }
+  .prism-art {
+    left:-46%;
+    width:158%;
+    height:auto;
+    aspect-ratio:1672/941;
+    mask-image:linear-gradient(#000 47%,transparent 100%);
+  }
+  .prism-art .prism-title,.prism-art .prism-red,.prism-crime-accent { display:none; }
+  .prism-compact-title {
+    position:relative;
+    display:block;
+    width:min(82vw,330px);
+    aspect-ratio:610/376;
+    background:
+      url('../assets/branding/cover/lettering.svg') 3.65% 14.8% / 274% auto no-repeat,
+      url('../assets/branding/prism-v6/crime-red-accent.svg') 3.65% 14.8% / 274% auto no-repeat;
+    filter:drop-shadow(0 2px 6px #000);
+  }
+  .roc-prism-title .entry-actions {
+    position:relative;
+    inset:auto;
+    width:min(74vw,286px);
+    height:auto;
+    margin-top:18px;
+    grid-auto-rows:minmax(44px,auto);
+    grid-template-rows:repeat(4,minmax(44px,auto));
+  }
+  .roc-prism-title .menu-button { font-size:clamp(18px,5.5vw,27px); }
+}

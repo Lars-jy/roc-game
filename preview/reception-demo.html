@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#000000">
+  <title>R.O.C · 会客室</title>
+  <link rel="stylesheet" href="./src/reception/reception.css">
+  <link rel="stylesheet" href="./src/reception/document-viewer.css">
+  <link rel="stylesheet" href="./src/paper-theme.css">
+  <link rel="stylesheet" href="./src/roc-theme.css">
+</head>
+<body class="reception-page">
+  <main id="reception" class="stage" aria-label="金鼎财富接待环节" tabindex="-1">
+    <div class="scene-wrap" aria-label="金鼎财富会客室">
+      <img class="scene-image" alt="" draggable="false">
+      <img class="scene-image" alt="" draggable="false">
+      <div class="scene-shade"></div>
+    </div>
+    <div class="matte matte-top">
+      <p class="demo-label">金鼎财富 · 会客室</p>
+      <button id="sound-toggle" hidden type="button" aria-pressed="false">声音：开</button>
+      <button id="restart" hidden type="button">重播</button>
+    </div>
+    <section class="dialogue matte matte-bottom" data-speaker="none" aria-label="人物对白">
+      <div class="speaker-card" hidden>
+        <div class="speaker-avatar"><img id="speaker-avatar" class="portrait-atlas" src="./assets/cast-zodiac.png" alt=""></div>
+        <p id="speaker-name" class="speaker-name"></p>
+      </div>
+      <p id="dialogue-text" class="caption" aria-live="off"></p>
+      <button id="continue" class="dialogue-next" type="button" aria-label="继续" hidden><span class="continue-label">继续</span><span class="triangle" aria-hidden="true">▾</span></button>
+      <p id="demo-help" class="demo-help" hidden></p>
+    </section>
+    <div id="action-area" hidden></div>
+    <div id="menu-area" hidden></div>
+    <div id="loading" class="loading-screen" role="status"><h1>金鼎财富</h1><p>正在进入会客室…</p></div>
+    <div id="error" class="error-screen" role="alert" hidden><h1>画面暂未加载完成</h1><p>请重新载入后再试。</p><button id="reload" type="button">重新载入</button></div>
+    <span id="announcement" role="status" aria-live="polite" style="position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);"></span>
+  </main>
+  <div id="document-root" hidden></div>
+  <script type="module" src="./src/reception/demo.js"></script>
+</body>
+</html>

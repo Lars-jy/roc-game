@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#161719">
+  <title>R.O.C · 问答推理桌</title>
+  <link rel="stylesheet" href="./src/investigation/workbench.css">
+  <link rel="stylesheet" href="./src/investigation/review.css">
+  <link rel="stylesheet" href="./src/investigation/reference-card.css">
+  <link rel="stylesheet" href="./src/investigation/summary-paper.css">
+  <link rel="stylesheet" href="./src/scene-navigation.css">
+  <script type="module" src="./src/scene-navigation.js" blocking="render"></script>
+  <link rel="stylesheet" href="./src/paper-theme.css">
+  <link rel="stylesheet" href="./src/roc-theme.css">
+</head>
+<body class="investigation-app" inert>
+  <header class="workbench-header">
+    <div class="case-brand"><span>第一章 · 问答推理桌</span><h1>R.O.C</h1></div>
+    <nav class="case-tabs" aria-label="工作区"><a href="./board-receipt-preview.html">桌面</a><a href="./characters-room-preview.html?from=questions">人物访谈</a></nav>
+    <div class="chapter-actions">
+      <button type="button" data-action="fast-answer" title="跳过中间流程，直接填写7月的最终调查报告">游戏速通</button>
+      <button type="button" data-action="summary">调查总结</button><button type="button" data-action="export-record">导出记录</button>
+    </div>
+  </header>
+  <div id="review-view" class="review-view" hidden><div class="review-heading"><div><span>INVESTIGATION CARDS / V1</span><h2>调查卡片 · 第一稿</h2></div><p>8 张主卡 <i>／</i> 28 个问题</p></div><div id="review-grid" class="review-grid"></div></div>
+  <div id="board-view" class="case-shell">
+    <aside class="card-library">
+      <div class="library-heading"><h2>卡片</h2><span id="library-count"></span></div>
+      <div class="library-tabs" role="group" aria-label="卡片分类">
+        <button type="button" data-action="filter" data-filter="all" class="active" aria-pressed="true">全部</button>
+        <button type="button" data-action="filter" data-filter="task" aria-pressed="false">任务</button>
+        <button type="button" data-action="filter" data-filter="evidence" aria-pressed="false">线索</button>
+        <button type="button" data-action="filter" data-filter="conclusion" aria-pressed="false">结论</button>
+      </div>
+      <label class="library-search"><span class="sr-only">按卡片名称搜索</span><input id="card-search" type="search" placeholder="搜索名称，如周岚、认购协议" autocomplete="off"></label>
+      <div id="library-list" class="library-list"></div>
+    </aside>
+    <main class="canvas-shell"><div id="board-viewport" class="board-viewport" aria-label="调查推理桌"><div id="board-world" class="board-world"><svg id="board-wires" class="board-wires" width="4000" height="2400" aria-hidden="true"></svg><div id="board-nodes"></div></div></div><div class="context-bar" id="context-bar" hidden></div><details class="task-progress-panel" open><summary>调查进度</summary><div id="task-progress-list" class="task-progress-list"></div></details><div class="board-controls"><button data-action="zoom" data-delta="-.1" aria-label="缩小">−</button><span id="zoom-label">100%</span><button data-action="zoom" data-delta=".1" aria-label="放大">＋</button><button data-action="fit">全览</button><button data-action="organize">整理</button><button data-action="reset-view">复位视角</button></div></main>
+  </div>
+  <div id="overlay"></div><div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script type="module" src="./src/investigation/workbench.js"></script>
+</body>
+</html>

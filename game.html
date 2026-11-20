@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#100c0c">
+  <title>R.O.C · 罪案之歌</title>
+  <link rel="icon" type="image/svg+xml" href="./assets/branding/cover/mark.svg">
+  <link rel="preload" as="image" href="./assets/branding/cover/illustration.webp" type="image/webp" fetchpriority="high">
+  <link rel="stylesheet" href="./src/chapter-shell.css">
+  <link rel="stylesheet" href="./src/paper-theme.css">
+  <link rel="stylesheet" href="./src/roc-theme.css">
+  <link rel="stylesheet" href="./src/title-prism.css">
+</head>
+<body>
+  <main id="chapter-entry">
+    <section class="entry-card roc-prism-title" aria-label="R.O.C · 罪案之歌">
+      <div class="prism-art" aria-hidden="true" inert>
+        <img class="prism-layer prism-source" src="./assets/branding/cover/illustration.webp" alt="" draggable="false" fetchpriority="high" width="1672" height="941">
+        <img class="prism-layer prism-red" src="./assets/branding/prism-v4/red-brush-crisp.svg" alt="" draggable="false">
+        <div class="prism-face-edits prism-warm-faces"><img class="prism-layer prism-expression-image" src="./assets/branding/cover/expressions.webp" alt="" draggable="false"></div>
+        <div class="prism-face-edits prism-fang-face"><img class="prism-layer prism-expression-image" src="./assets/branding/cover/expressions.webp" alt="" draggable="false"></div>
+        <div class="prism-cast-shadow-scope"><div class="prism-cast-shadow-beam"><div class="prism-cast-shadow prism-cast-snake"></div><div class="prism-cast-shadow prism-cast-sheep"></div><div class="prism-cast-shadow prism-cast-rabbit"></div></div></div>
+        <div class="prism-set-light">
+          <span class="prism-pane prism-pane-left"></span>
+          <span class="prism-pane prism-pane-middle"></span>
+          <span class="prism-pane prism-pane-right"></span>
+        </div>
+        <div class="prism-glass-fallback"></div>
+        <canvas class="title-glass-canvas"></canvas>
+        <div class="prism-shadow"></div>
+        <img class="prism-layer prism-crime-accent" src="./assets/branding/prism-v6/crime-red-accent.svg" alt="" draggable="false">
+        <img class="prism-layer prism-title" src="./assets/branding/cover/lettering.svg" alt="" draggable="false" fetchpriority="high" width="1672" height="941">
+        <div class="prism-vignette"></div>
+      </div>
+      <div class="prism-compact-title" aria-hidden="true"></div>
+      <h1 class="visually-hidden">R.O.C · 罪案之歌 — Requiem of Crime</h1>
+      <nav class="entry-actions" aria-label="主菜单">
+        <button id="start-case" class="menu-button is-current" type="button">开始游戏</button>
+        <button id="continue-case" class="menu-button" type="button" disabled>继续游戏</button>
+        <button id="open-authors" class="menu-button" type="button">作者的话</button>
+        <button id="open-settings" class="menu-button" type="button">设置</button>
+      </nav>
+    </section>
+    <p id="entry-music-hint" class="entry-music-hint">如若无背景音乐，请点击屏幕任意位置。</p>
+  </main>
+  <iframe id="chapter-frame" title="R.O.C · 罪案之歌" src="about:blank" allow="autoplay; fullscreen" hidden></iframe>
+  <div id="chapter-curtain" aria-hidden="true" hidden></div>
+  <section id="authors-panel" class="entry-overlay" role="dialog" aria-modal="true" aria-labelledby="authors-title" hidden>
+    <div class="entry-panel author-panel">
+      <button class="panel-close" type="button" data-close-panel aria-label="关闭作者的话">×</button>
+      <h2 id="authors-title">作者的话</h2>
+      <div class="author-content">
+        <div class="panel-scroll author-text" role="region" aria-label="作者正文" tabindex="0" inert aria-hidden="true">
+          <p>最开始构思这个作品，我们不想做一个简单没有创新的金融答题游戏，就想到把解谜剧情和消消乐结合在一起。通过不枯燥乏味的方式，有趣的消除卡牌搜集线索，再依靠答题一步步挖出"金鼎财富"背后的真相。在整个游戏里你可以反复尝试，答错题目或闯关失败都能重新来过，慢慢梳理整个骗局的套路。可现实不会给这么多次机会，类似庞氏骗局的案件真实发生过，不少人被高额回报的话术迷惑，最后积蓄付诸东流。</p>
+          <p>说回游戏，跟着故事走到最后你会发现，金鼎财富那些漂亮柜台、认购邀约、诱人的“稳盈计划”，也全都是假象。它拿新投资人的钱去填旧的窟窿，曾经轰动全国的 e 租宝，只用一年半，就把一百一十五万多人的积蓄卷走，留下三百八十多亿的损失。我们没有堆砌晦涩难懂的专业理论，借着这个虚构的金鼎财富故事，就是想把这类骗局的运作方式直观展现出来。希望你经历完这一整个故事后，再遇到保本高收益这类诱人的说辞时，可以多一份戒备心。最后，记住一句最简单的话：许诺保本又高收益的，大多都是陷阱。愿这场小小的冒险，能给你多一双分辨骗局的慧眼。</p>
+          <p>感谢你体验此游戏。</p>
+        </div>
+        <div class="author-lock">
+          <span class="author-lock-icon" aria-hidden="true"></span>
+          <span>通关显示</span>
+        </div>
+      </div>
+      <button class="chapter-button panel-return" type="button" data-close-panel>返回</button>
+    </div>
+  </section>
+  <section id="settings-panel" class="entry-overlay" role="dialog" aria-modal="true" aria-labelledby="settings-title" hidden>
+    <div class="entry-panel settings-panel">
+      <button class="panel-close" type="button" data-close-panel aria-label="关闭设置">×</button>
+      <p class="panel-kicker">R.O.C</p>
+      <h2 id="settings-title">设置</h2>
+      <div class="panel-scroll settings-scroll">
+      <label class="setting-row" for="music-volume"><span>背景音乐</span><output id="music-volume-value" for="music-volume">42%</output></label>
+      <input id="music-volume" class="volume-slider" type="range" min="0" max="100" step="1" value="42">
+      <label class="setting-row" for="effects-volume"><span>音效与配音</span><output id="effects-volume-value" for="effects-volume">100%</output></label>
+      <input id="effects-volume" class="volume-slider" type="range" min="0" max="100" step="1" value="100">
+      <label class="setting-toggle" for="music-muted"><span>静音</span><input id="music-muted" type="checkbox"></label>
+      <div class="setting-display"><span>显示模式</span><button id="toggle-fullscreen" class="chapter-button" type="button">全屏</button></div>
+      <p id="settings-feedback" class="settings-feedback" role="status" hidden></p>
+      <details class="music-credits">
+        <summary>音乐鸣谢</summary>
+        <p><a href="https://incompetech.com/music/royalty-free/index.html?isrc=USUAN1100783" target="_blank" rel="noopener noreferrer">Darkest Child</a> — Kevin MacLeod (incompetech.com)，依据 <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener noreferrer">CC BY 4.0</a> 许可使用。4月、5月使用放慢、降低音调及音量的版本。</p>
+        <p>以下配乐由 <a href="https://www.scottbuckley.com.au/" target="_blank" rel="noopener noreferrer">Scott Buckley</a> 创作，依据 <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener noreferrer">CC BY 4.0</a> 许可使用。</p>
+        <ul>
+          <li><a href="https://www.scottbuckley.com.au/library/intervention/" target="_blank" rel="noopener noreferrer">Intervention</a> <span>· No Piano Melody</span></li>
+          <li><a href="https://www.scottbuckley.com.au/library/in-search-of-solitude/" target="_blank" rel="noopener noreferrer">In Search Of Solitude</a></li>
+          <li><a href="https://www.scottbuckley.com.au/library/signal-to-noise/" target="_blank" rel="noopener noreferrer">Signal to Noise</a> <span>· No Piano Melody</span></li>
+          <li><a href="https://www.scottbuckley.com.au/library/anabasis-i/" target="_blank" rel="noopener noreferrer">The Weight of Air — Anabasis I</a></li>
+          <li><a href="https://www.scottbuckley.com.au/library/katabasis-i/" target="_blank" rel="noopener noreferrer">The Weight of Air — Katabasis I</a></li>
+          <li><a href="https://www.scottbuckley.com.au/library/the-long-dark/" target="_blank" rel="noopener noreferrer">The Long Dark</a></li>
+        </ul>
+        <p class="credit-note">游戏中对播放音量、速度、音调、淡入淡出与循环播放作了适配。结尾保留制作时提供的原音轨。</p>
+      </details>
+      </div>
+      <button class="chapter-button panel-return" type="button" data-close-panel>返回</button>
+    </div>
+  </section>
+  <section id="new-case-confirmation" class="confirmation-overlay" role="dialog" aria-modal="true" aria-labelledby="new-case-title" hidden>
+    <div class="confirmation-card">
+      <h2 id="new-case-title">开始新游戏</h2>
+      <p>重新从邀请函开始。进入新一轮调查时，现有调查与资金记录将由新案件替换。</p>
+      <div class="confirmation-actions"><button id="cancel-new-case" class="chapter-button" type="button">保留当前记录</button><button id="confirm-new-case" class="chapter-button primary-action" type="button">开始新游戏</button></div>
+    </div>
+  </section>
+  <section id="chapter-failure" class="confirmation-overlay" role="alertdialog" aria-label="页面未能载入" hidden>
+    <div class="confirmation-card"><h2>页面未能载入</h2><p id="failure-message"></p><button id="retry-chapter" class="chapter-button" type="button">重试</button></div>
+  </section>
+  <script type="module" src="./src/chapter-shell.js"></script>
+</body>
+</html>
+

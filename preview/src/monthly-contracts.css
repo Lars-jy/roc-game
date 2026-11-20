@@ -1,0 +1,28 @@
+.monthly-contracts-dialog { width:100vw; height:100svh; max-width:none; max-height:none; inset:0; margin:0; padding:24px; border:0; background:transparent; color:var(--archive-paper-ink,#2f2a23); overflow:hidden; box-shadow:none; translate:none; scale:none; }
+.monthly-contracts-dialog[open] { display:grid; place-items:center; }
+.monthly-contracts-dialog::backdrop { background:#020405c7; }
+.monthly-cover-layout { --cover-width:min(58svh,580px,calc((94vw - 112px) / 2)); position:relative; display:flex; justify-content:center; align-items:center; gap:36px; padding:18px 36px; }
+.monthly-contract-cover { position:relative; box-sizing:border-box; flex:0 0 var(--cover-width); display:flex; flex-direction:column; align-items:stretch; width:var(--cover-width); height:calc(var(--cover-width) * 297 / 210); aspect-ratio:210 / 297; min-height:0; padding:calc(var(--cover-width) * .085) calc(var(--cover-width) * .09) calc(var(--cover-width) * .08); border:1px solid #9a8c71; border-radius:0; background:linear-gradient(102deg,#80634309,transparent 45%),var(--archive-paper,#cfc3ab); box-shadow:1px 1px 0 #a89b80,3px 3px 0 #8f826a,5px 5px 0 #514a3c,8px 12px 22px #0009; font-family:'SimSun','Songti SC',serif; font-size:calc(var(--cover-width) * .032); text-align:left; line-height:1.6; color:var(--archive-paper-ink,#2f2a23); cursor:pointer; transition:transform .2s ease,box-shadow .2s ease; }
+.monthly-contract-cover:hover { transform:translateY(-4px); box-shadow:1px 1px 0 #a89b80,3px 3px 0 #8f826a,5px 5px 0 #514a3c,9px 16px 25px #000a; }
+.monthly-contract-cover:focus-visible { outline:2px solid #cfbd8c; outline-offset:5px; }
+.monthly-contract-cover > span { flex-shrink:0; }
+.monthly-cover-masthead { display:flex; align-items:baseline; justify-content:space-between; padding-bottom:.7em; border-bottom:1px solid var(--archive-paper-rule,#82745b); font-family:'SimHei','Microsoft YaHei',sans-serif; font-size:.92em; letter-spacing:.12em; }
+.monthly-cover-masthead > :last-child { font-family:'SimSun','Songti SC',serif; font-size:.85em; letter-spacing:.08em; }
+.monthly-cover-number { margin-top:.8em; color:var(--archive-paper-muted,#5c5142); font-size:.82em; letter-spacing:.035em; text-align:right; }
+.monthly-cover-main { display:flex; flex-direction:column; align-items:center; margin-top:calc(var(--cover-width) * .115); text-align:center; }
+.monthly-cover-brand { font-family:'SimHei','Microsoft YaHei',sans-serif; font-size:2.2em; font-weight:700; letter-spacing:.2em; line-height:1.3; }
+.monthly-contract-cover strong { margin-top:.85em; font-family:'SimHei','Microsoft YaHei',sans-serif; font-size:1.75em; font-weight:700; letter-spacing:.065em; line-height:1.35; white-space:nowrap; }
+.monthly-cover-rule { width:72%; margin:1.5em 0 1.1em; border-top:1px solid var(--archive-paper-rule,#82745b); }
+.monthly-cover-subtitle { font-size:.89em; letter-spacing:.02em; line-height:1.9; text-align:center; }
+.monthly-cover-filing { display:grid; align-self:center; gap:.4em; margin-top:calc(var(--cover-width) * .08); font-size:1em; }
+.monthly-cover-blank { display:inline-block; min-width:7em; border-bottom:1px solid var(--archive-paper-rule,#82745b); text-align:center; }
+.monthly-cover-footer { display:grid; gap:.3em; margin-top:auto; font-size:1em; line-height:1.7; letter-spacing:.08em; text-align:center; }
+.monthly-cover-edition { margin-top:1.4em; color:var(--archive-paper-muted,#5c5142); font-size:.7em; letter-spacing:.05em; text-align:center; }
+.monthly-exit-paper .subscription-body { overflow-y:auto; scrollbar-color:#8c7c61 transparent; scrollbar-width:thin; max-height:calc(100% - 151px); padding-right:6px; }
+.monthly-exit-paper textarea { width:100%; min-height:90px; resize:vertical; max-height:160px; border:1px solid var(--archive-paper-rule,#82745b); background:var(--archive-paper-light,#d8ceb9); color:var(--archive-paper-ink,#2f2a23); font:inherit; padding:8px 10px; line-height:1.6; color-scheme:light; }
+.monthly-exit-paper dl { grid-template-columns:7em 1fr; }
+.monthly-exit-paper .monthly-paper-status { padding:7px 0; border-bottom:1px solid #8b7e6259; font-weight:700; }
+.monthly-exit-paper .monthly-reason-copy { overflow-wrap:anywhere; white-space:pre-wrap; }
+.monthly-exit-layout .subscription-side:not(:has(nav)) .paper-confirm { margin-top:auto; }
+@media(max-height:740px) { .monthly-exit-paper { font-size:14px; }.monthly-exit-paper .subscription-body { max-height:calc(100% - 140px); } }
+@media(prefers-reduced-motion:reduce) { .monthly-contract-cover { transition:none; }.monthly-contract-cover:hover { transform:none; } }

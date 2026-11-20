@@ -1,0 +1,43 @@
+.subscription-dialog { width:100vw; height:100svh; max-width:none; max-height:none; overflow:hidden; inset:0; margin:0; padding:24px; border:0; background:transparent; box-shadow:none; color:#1c1c1c; translate:none; scale:none; }
+.subscription-dialog[open] { display:grid; place-items:center; }
+.subscription-dialog::backdrop { background:#020405bd; }
+.subscription-layout { position:relative; display:flex; gap:20px; align-items:stretch; perspective:1800px; }
+.subscription-paper { --page-height:min(calc(100svh - 60px),806px); position:relative; flex:none; width:calc(var(--page-height) * 210 / 297); height:var(--page-height); padding:26px 30px 38px; background:#fff; box-shadow:3px 8px 15px #0008; color:#181818; font-family:'SimSun','Songti SC',serif; font-size:clamp(14px,1.98svh,18px); line-height:1.5; backface-visibility:hidden; }
+.subscription-paper header { padding:0 0 14px; border-bottom:1px solid #333; text-align:center; background:transparent; }
+.subscription-paper h1 { margin:10px 0 12px; font-size:2em; font-family:'SimHei','Microsoft YaHei',sans-serif; font-weight:700; letter-spacing:.12em; }
+.subscription-paper h2 { margin:0; font-size:1.48em; font-family:'SimHei','Microsoft YaHei',sans-serif; font-weight:600; }
+.subscription-paper .paper-agreement-no { margin:0; color:#888; font-family:'Microsoft YaHei',sans-serif; font-size:.8em; }
+.subscription-body { padding-top:14px; }
+.subscription-body p { margin:0 0 11px; }
+.subscription-body h3 { margin:13px 0 8px; font-weight:700; font-size:1.1em; }
+.subscription-body dl { display:grid; grid-template-columns:6em 1fr; row-gap:8px; margin:0; }
+.subscription-body dt::after { content:'：'; }
+.subscription-body dd { margin:0; }
+.subscription-body .paper-small { font-size:.78em; color:#717171; margin-top:9px; }
+.paper-blank { display:inline-block; min-width:7em; text-align:center; border-bottom:1px solid #222; }
+.paper-amount { display:flex; gap:8px; align-items:baseline; white-space:nowrap; }
+.paper-amount input { color:#111; color-scheme:light; font:inherit; font-family:Georgia,'SimSun',serif; width:9em; min-width:0; padding:3px 6px; border:0; border-bottom:1px solid #333; border-radius:0; background:#f6f6f6; }
+.subscription-body .paper-signature { display:flex; justify-content:space-between; margin-top:24px; font-size:.88em; }
+.subscription-paper footer { position:absolute; bottom:15px; left:0; right:0; color:#999; text-align:center; font:.8em 'Microsoft YaHei',sans-serif; }
+.paper-ack { display:flex; align-items:flex-start; gap:8px; margin-top:22px; font-size:.94em; cursor:pointer; }
+.paper-ack input { margin-top:6px; accent-color:#473d2a; width:16px; height:16px; flex:none; }
+.subscription-body .paper-final-amount { margin-top:20px; }
+.subscription-side { display:flex; flex-direction:column; align-items:center; width:94px; color:#ded4bd; }
+.subscription-side button { font:inherit; border:1px solid #a898704f; background:#151715df; color:#ddd1b6; cursor:pointer; }
+.subscription-side nav { display:flex; align-items:center; gap:9px; margin:auto 0 24px; font-size:12px; white-space:nowrap; }
+.subscription-side nav button { width:24px; height:32px; font-size:24px; border:0; background:transparent; }
+.subscription-side button:disabled { opacity:.25; cursor:default; }
+.subscription-side .paper-confirm { width:90px; padding:13px 0; margin-bottom:26px; background:#443624; border-color:#a89669; box-shadow:0 3px 8px #0006; letter-spacing:.15em; }
+.paper-scene-back { position:fixed; z-index:5; top:24px; left:28px; display:grid; place-items:center; width:54px; height:46px; padding:7px; border:0; background:transparent; color:#d6cebd; cursor:pointer; transition:color .16s,transform .16s; }
+.paper-scene-back svg { display:block; width:100%; height:100%; fill:none; stroke:currentColor; stroke-width:1.8; stroke-linecap:round; stroke-linejoin:round; filter:drop-shadow(0 2px 3px #000b); }
+.paper-scene-back:hover { color:#f0e9d9; transform:translateX(-3px); }
+.paper-scene-back:focus-visible { outline:1px solid #c7b78e; outline-offset:3px; }
+@media(prefers-reduced-motion:reduce) { .paper-scene-back { transition:none; } }
+@media(max-height:710px) { .subscription-paper { padding:20px 27px 30px; font-size:13.5px; }.subscription-body h3 { margin-top:12px; }.subscription-body p { margin-bottom:10px; } }
+
+/* Dim archival paper; keep the approved sheet size and typography. */
+.subscription-paper { color:var(--archive-paper-ink,#2f2a23); background:linear-gradient(115deg,#65513a06,transparent 62%),var(--archive-paper,#cfc3ab); }
+.subscription-paper header { border-bottom-color:var(--archive-paper-rule,#82745b); }
+.subscription-paper .paper-agreement-no,.subscription-paper footer,.subscription-body .paper-small { color:var(--archive-paper-muted,#6b604f); }
+.paper-amount input { color:var(--archive-paper-ink,#2f2a23); background:var(--archive-paper-light,#d8ceb9); border-bottom-color:var(--archive-paper-rule,#82745b); }
+.paper-blank { border-bottom-color:var(--archive-paper-rule,#82745b); }

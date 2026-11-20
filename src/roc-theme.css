@@ -1,0 +1,136 @@
+/* R.O.C: the cover's vermilion thread is an accent, not a screen tint.
+   Keep readable paper and the existing scene artwork independent of this UI layer. */
+:root {
+  --roc-red: #b64e40;
+  --roc-red-light: #e69580;
+  --roc-red-ink: #963a30;
+  --roc-red-dark: #6e2923;
+  --roc-red-edge: #a75342;
+}
+
+/* One small red landmark on the timeline; money and inactive dates remain ivory. */
+.board-room::after {
+  background:
+    radial-gradient(ellipse at 93% 17%,#782c2524,transparent 34%),
+    linear-gradient(180deg,#02050985,transparent 28%,#03060832 65%,#040609a8),
+    radial-gradient(ellipse at 59% 43%,#4c412420,transparent 56%);
+}
+.board-room .month-timeline::after { background: var(--roc-red); }
+.board-room .month-timeline span.active { color: #f1d8c7; }
+.board-room .month-timeline span.active::before {
+  width: 2px; background: var(--roc-red-light); box-shadow: 0 0 6px #a83f3140;
+}
+.board-room .month-timeline span.active::after { border-bottom-color: var(--roc-red-light); }
+.board-room .brand h1 { letter-spacing: .18em; }
+.board-room .brand::after {
+  content: ''; display: block; width: 27px; height: 2px; margin-top: 9px;
+  background: var(--roc-red); box-shadow: 0 1px 2px #0009;
+}
+.board-room .scene-next:hover > span { border-left-color: var(--roc-red-light); }
+.board-room .case-blackboard .board-threads line,
+.board-room .case-blackboard .board-threads path { stroke: #bd5947; }
+.board-room .case-blackboard .board-threads circle { fill: #ce654f; stroke: #612c24; }
+.board-room .case-blackboard:hover { border-color: #91604a; }
+.board-room .month-action { border-color: #a753428c; box-shadow: inset 2px 0 0 var(--roc-red),0 4px 9px #0007; }
+.board-room .month-action:hover { border-color: var(--roc-red-light); background: #251816e8; }
+.board-room #tray.is-full .rack-slot { box-shadow: inset 0 0 0 1px #b64e4099,inset 0 3px 8px #0007; }
+.board-room .fast-clear:hover:not(:disabled) { border-color: var(--roc-red-edge); background: #44261f99; }
+.board-room button:focus-visible,
+.board-room a:focus-visible { outline-color: var(--roc-red-light); }
+.chapter-dialog .chapter-actions button.primary { background: var(--roc-red-dark); border-color: var(--roc-red-edge); color: #f3dfca; }
+
+/* The inference desk keeps its dark felt and pale photographs. Red means a
+   selected thread, a recorded connection, or a verified mark, never a paper fill. */
+body.investigation-app { --accent: var(--roc-red-light); }
+.investigation-app .workbench-header { border-bottom-color: #a34d3a48; }
+.investigation-app .case-brand h1 { letter-spacing: .18em; }
+.investigation-app .case-tabs button.active { color: #efd3bc; }
+.investigation-app .case-tabs button.active::after { background: var(--roc-red); }
+.investigation-app .case-tabs a:hover { color: #efd3bc; box-shadow: inset 0 -2px var(--roc-red); }
+.investigation-app .chapter-actions button:hover { border-color: var(--roc-red-edge); background: #311a1766; }
+.investigation-app .library-tabs button.active { color: #f0d5c5; background: #8e352822; box-shadow: inset 0 -1px var(--roc-red); }
+.investigation-app .library-card.placed,
+.investigation-app .library-card.is-placed { border-left-color: var(--roc-red); }
+.investigation-app .library-card.selected { border-color: var(--roc-red-edge); background: #61312521; }
+.investigation-app .library-card:hover { border-color: #b16d598a; }
+.investigation-app .board-viewport {
+  background:
+    radial-gradient(ellipse at center,transparent 25%,#0007 110%),
+    radial-gradient(ellipse at 89% 5%,#6c292214,transparent 42%),
+    radial-gradient(circle,#a6a8980e 1.8px,transparent 2.4px) 0 0/10px 10px,
+    radial-gradient(circle,#b7b9a20b 1.8px,transparent 2.4px) 5px 5px/10px 10px,
+    linear-gradient(122deg,#1d1e20,#18191b 60%,#151719);
+}
+.investigation-app .wire { stroke: #b86652e0; stroke-width: 3; }
+.investigation-app .wire.valid,
+.investigation-app .wire.correct { stroke: #c96a54; }
+.investigation-app .wire.selected { stroke: var(--roc-red-light); stroke-width: 4; }
+.investigation-app .wire-draft { stroke: #e6ac91; }
+.investigation-app .investigation-card.is-selected,
+.investigation-app .investigation-card.is-front { outline-color: var(--roc-red); }
+.investigation-app .investigation-card.drop-target { outline-color: #bd5542; }
+.investigation-app .question-port:hover,
+.investigation-app .question-port.selected { box-shadow: 0 0 0 4px #9d3c303a,1px 2px 2px #0008; }
+.investigation-app .boolean-toggle button.selected,
+.investigation-app .boolean-toggle button[data-yes='true'].selected,
+.investigation-app .boolean-toggle button[data-yes='false'].selected {
+  background: #843b31; border-color: #663026; color: #fff0dc;
+}
+.investigation-app .question-state.correct,
+body.investigation-app .investigation-card.photo-sheet .question-state.correct { color: #982e27; }
+.investigation-app .task-stamp {
+  border-color: #a6322bd6; color: #9d3028cf;
+  background: radial-gradient(circle,#c45a4012,transparent 75%);
+  text-shadow: 1px 0 #ae433655;
+}
+.investigation-app .task-stamp::after { border-color: #a6322ba6; }
+.investigation-app .task-progress-track > span,
+.investigation-app .progress-track span,
+.investigation-app .progress-track i { background: var(--roc-red); }
+.investigation-app .task-progress-item.is-complete .task-progress-caption { color: #edc5ad; }
+.investigation-app .task-progress-item.is-complete .task-progress-number { color: var(--roc-red-light); }
+.investigation-app .board-controls button:hover { border-color: var(--roc-red-edge); color: #edc5ad; background: #31201b; }
+.investigation-app .connection-status { border-left-color: var(--roc-red); }
+.investigation-app button:focus-visible,
+.investigation-app input:focus-visible,
+.investigation-app a:focus-visible,
+.investigation-app textarea:focus-visible { outline-color: var(--roc-red-edge); }
+
+/* Red seals the decision; contract text and financial figures stay dark ink. */
+.subscription-side .paper-confirm {
+  background: var(--roc-red-dark); border-color: #bc7961; color: #f2dfca;
+  box-shadow: inset 0 0 0 1px #e3b69917,0 3px 8px #0006;
+}
+.subscription-side .paper-confirm:hover:not(:disabled) { background: #81342a; border-color: #d5987b; }
+.paper-ack input { accent-color: var(--roc-red-ink); }
+.monthly-contract-cover:focus-visible { outline-color: var(--roc-red-light); }
+.monthly-contract-cover:hover { border-color: #9b5341; }
+.chapter-summary .summary-field-number { color: var(--roc-red-ink); }
+.chapter-summary .summary-actions .summary-submit { color: #f2dfca; background: #7f332a; border-color: #7f332a; }
+.chapter-summary .summary-actions .summary-submit:hover:not(:disabled) { background: #913e31; }
+.chapter-summary .summary-field textarea:focus { outline-color: #9e5a45; }
+
+/* Interview lighting retains the approved neutral spotlight. Only available
+   topics and the player's active reply gain a restrained vermilion cue. */
+.room-view .scene-return:hover { color: var(--roc-red-light); }
+.room-view .character.has-new .character-name::after {
+  content: ''; display: block; width: 22px; height: 2px; margin: 5px auto 0;
+  background: var(--roc-red); box-shadow: 0 1px 3px #000b;
+}
+.room-view[data-mode='talk'] .character.is-selected .character-name::after { display: none; }
+.room-view .topic-list button.has-new-topic::after { background: #d66c56; }
+.room-view .topic-list button:hover,
+.room-view .topic-list button:focus-visible,
+.room-view .player-reply:hover {
+  border-color: #b67765; color: #f0dac7; background: linear-gradient(90deg,#7a33251f,transparent);
+}
+.room-view .player-reply:not([hidden]) { border-left: 2px solid var(--roc-red); }
+.room-view button:focus-visible { outline-color: var(--roc-red-light); }
+
+/* Compatibility pages use the same sparse accent without changing layout. */
+.body-game { --red: #b64e40; --wire: #b86652; --ui-accent: #d58d73; }
+.body-game #date-strip span.active:after { background: var(--roc-red); }
+.body-game .relation-lines line { stroke: #b86652e0; }
+.body-game .relation-lines line.custom-line { stroke: var(--roc-red-light); }
+.body-game .q-choice.selected { border-color: #b76a54; box-shadow: inset 3px 0 0 var(--roc-red); background: #65322526; }
+.body-game .red-dot { background: #bd4d3d; }
