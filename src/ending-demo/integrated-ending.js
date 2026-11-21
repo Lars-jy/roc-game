@@ -85,7 +85,7 @@ function ensureEnvironment() {
   layer.setAttribute('aria-label', 'R.O.C结尾动画');
   const canvas = document.createElement('canvas'); canvas.id = 'integrated-ending-canvas';
   canvas.width = WIDTH; canvas.height = HEIGHT; canvas.setAttribute('aria-label', '调查报告结尾动画');
-  const audio = document.createElement('audio'); audio.preload = 'auto'; audio.src = ASSETS + 'reference-audio.m4a';
+  const audio = document.createElement('audio'); audio.preload = 'auto'; audio.src = ASSETS + 'reference-audio.m4a?v=124d3853';
   audio.dataset.rocVolumeManaged = 'true';
   layer.append(canvas, audio); document.body.append(layer);
   environment = { layer, canvas, audio, renderer: null };
