@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1672" height="941" viewBox="0 0 1672 941">
+  <title>Glass illumination scope; foreground completely excluded</title>
+  <defs>
+    <mask id="glass-only" maskUnits="userSpaceOnUse" x="0" y="0" width="1672" height="941" style="mask-type:luminance">
+      <rect width="1672" height="941" fill="white"/>
+      <!-- Foreground desk, left papers, right ledger and pen. The contour has
+           a small outward safety margin so anti-aliased object edges stay dark. -->
+      <path d="M0 910L95 861L240 838L455 798L493 829L670 822L851 833L1110 826L1271 811L1438 806L1446 749L1672 708V941H0Z" fill="black" stroke="black" stroke-width="14" stroke-linejoin="round"/>
+      <!-- Full envelope, lifted upper edge and its shadow; preserved original
+           source geometry plus a conservative margin, rather than a y-fade. -->
+      <path d="M890 730L1257 776L1203 948L804 927Z" fill="black" stroke="black" stroke-width="16" stroke-linejoin="round"/>
+    </mask>
+  </defs>
+  <rect width="1672" height="941" fill="white" mask="url(#glass-only)"/>
+</svg>
