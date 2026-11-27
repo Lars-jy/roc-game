@@ -1,6 +1,6 @@
 (() => {
-  const html = document.documentElement;
-  const version = html.dataset.rocBuild;
+  const page = document.documentElement;
+  const version = page.dataset.rocBuild;
   const root = new URL('./', window.location.href);
   const prefix = 'roc-mobile-preload-';
   const bar = document.querySelector('[data-roc-progress]');
@@ -11,50 +11,53 @@
   const memory = new Map();
   const completed = new Map();
   const pending = new Map();
-  let files;
+  let manifest;
   let store;
-  let inProgress = false;
+  let running = false;
+  let paint = 0;
 
   function urlFor(path, parameter) {
     const url = new URL(path, root);
-    url.searchParams.set(parameter, version);
+    if (parameter) url.searchParams.set(parameter, version);
     return url.href;
   }
 
   function setStatus(state, label, message) {
-    html.dataset.rocLoad = state;
+    page.dataset.rocLoad = state;
     status.textContent = label;
     detail.textContent = message;
   }
 
   function showProgress() {
-    if (!files) return;
-    const count = [...completed.values(), ...pending.values()].reduce((a, b) => a + b, 0);
-    bar.value = count;
-    percent.textContent = Math.min(100, Math.floor(count / bar.max * 100)) + '%';
-    if (html.dataset.rocLoad === 'loading') {
-      const mb = bytes => (bytes / 1000000).toFixed(1);
-      detail.textContent = mb(count) + ' / ' + mb(bar.max) + ' MB';
-    }
-  }
-
-  function hasController() {
-    return navigator.serviceWorker.controller?.scriptURL === urlFor('sw.js', 'v');
+    cancelAnimationFrame(paint);
+    paint = requestAnimationFrame(() => {
+      const count = [...completed.values(), ...pending.values()].reduce((a, b) => a + b, 0);
+      bar.value = count;
+      percent.textContent = Math.min(100, Math.floor(count / bar.max * 100)) + '%';
+      if (page.dataset.rocLoad === 'loading') {
+        const mb = bytes => (bytes / 1000000).toFixed(1);
+        detail.textContent = mb(count) + ' / ' + mb(bar.max) + ' MB';
+      }
+    });
   }
 
   async function connectCache() {
     if (!window.isSecureContext || !window.caches || !navigator.serviceWorker) return undefined;
     const service = navigator.serviceWorker;
+    const workerURL = urlFor('sw.js', 'v');
+    const controlled = () => service.controller?.scriptURL === workerURL;
     try {
-      await service.register(urlFor('sw.js', 'v'), { scope: './', updateViaCache: 'none' });
-      if (!hasController()) {
+      if (!controlled()) {
+        await service.register(workerURL, { scope: './', updateViaCache: 'none' });
+      }
+      if (!controlled()) {
         await new Promise((resolve, reject) => {
           const finish = error => {
             clearTimeout(timer);
             service.removeEventListener('controllerchange', change);
             if (error) reject(error); else resolve();
           };
-          const change = () => { if (hasController()) finish(); };
+          const change = () => { if (controlled()) finish(); };
           const timer = setTimeout(() => finish(new Error('Service worker not active')), 6500);
           service.addEventListener('controllerchange', change);
           change();
@@ -67,24 +70,41 @@
   }
 
   async function readManifest() {
-    const response = await fetch(urlFor('preload-manifest.json', 'v'));
-    if (!response.ok) throw new Error('The manifest did not load.');
-    const manifest = await response.json();
-    if (manifest.version !== version || !manifest.files.length) throw new Error('The manifest is outdated.');
-    bar.max = manifest.files.reduce((bytes, file) => bytes + file.bytes, 0);
-    if (store) {
-      await store.put(new URL('preload-manifest.json', root), new Response(JSON.stringify(manifest), {
-        headers: { 'Content-Type': 'application/json; charset=utf-8' },
-      }));
+    const controller = new AbortController();
+    const timer = setTimeout(() => controller.abort(), 24000);
+    try {
+      const response = await fetch(urlFor('preload-manifest.json', 'v'), { signal: controller.signal });
+      if (!response.ok) throw new Error('The manifest did not load.');
+      const data = await response.json();
+      if (data.version !== version || !data.files.length || !data.packs.length) {
+        throw new Error('The manifest is outdated.');
+      }
+      return data;
+    } finally {
+      clearTimeout(timer);
     }
-    return manifest.files;
   }
 
   function remember(file, blob) {
     memory.set(file.path, URL.createObjectURL(blob));
   }
 
-  async function readAsset(file) {
+  async function rememberFile(file, blob) {
+    if (store) {
+      await store.put(urlFor(file.path), new Response(blob, {
+        headers: {
+          'Content-Type': file.type,
+          'Content-Length': String(file.bytes),
+          'Accept-Ranges': 'bytes',
+        },
+      }));
+    } else {
+      remember(file, blob);
+    }
+    completed.set(file.path, file.bytes);
+  }
+
+  async function readDownload(download, wantedBytes) {
     const controller = new AbortController();
     let timer;
     let loaded = 0;
@@ -94,13 +114,12 @@
     };
     restartTimeout();
     try {
-      const response = await fetch(urlFor(file.path, 'roc-download'), { signal: controller.signal });
-      if (!response.ok || response.status === 206) throw new Error('Download failed: ' + file.path);
+      const response = await fetch(urlFor(download.path, 'roc-download'), { signal: controller.signal });
+      if (!response.ok || response.status === 206) throw new Error('Download failed: ' + download.path);
       let blob;
       if (!response.body) {
-        const bytes = await response.arrayBuffer();
-        loaded = bytes.byteLength;
-        blob = new Blob([bytes], { type: file.type });
+        blob = await response.blob();
+        loaded = blob.size;
       } else {
         const reader = response.body.getReader();
         const chunks = [];
@@ -109,86 +128,127 @@
           if (done) break;
           restartTimeout();
           loaded += value.byteLength;
-          if (loaded > file.bytes) {
+          if (loaded > download.bytes) {
             controller.abort();
-            throw new Error('Unexpected asset size: ' + file.path);
+            throw new Error('Unexpected download size: ' + download.path);
           }
           chunks.push(value);
-          pending.set(file.path, loaded);
+          pending.set(download.path, Math.floor(wantedBytes * loaded / download.bytes));
           showProgress();
         }
-        blob = new Blob(chunks, { type: file.type });
+        blob = new Blob(chunks);
       }
-      if (loaded !== file.bytes) throw new Error('Incomplete download: ' + file.path);
+      if (loaded !== download.bytes) throw new Error('Incomplete download: ' + download.path);
       return blob;
     } finally {
       clearTimeout(timer);
-      pending.delete(file.path);
+      pending.delete(download.path);
     }
   }
 
-  async function saveAsset(file) {
+  function storageFull(error) {
+    return ['QuotaExceededError', 'InvalidStateError', 'SecurityError'].includes(error?.name);
+  }
+
+  async function saveDownload(download) {
     for (let attempt = 0; attempt < 2; attempt++) {
       try {
-        const blob = await readAsset(file);
-        if (store) {
-          await store.put(new URL(file.path, root), new Response(blob, {
-            headers: {
-              'Content-Type': file.type,
-              'Content-Length': String(blob.size),
-              'Accept-Ranges': 'bytes',
-            },
-          }));
-        } else {
-          remember(file, blob);
+        const wanted = download.files.filter(file => !completed.has(file.path));
+        if (!wanted.length) return;
+        const bytes = wanted.reduce((sum, file) => sum + file.bytes, 0);
+        const blob = await readDownload(download, bytes);
+        for (const file of wanted) {
+          const begin = file.offset || 0;
+          await rememberFile(file, blob.slice(begin, begin + file.bytes, file.type));
+          showProgress();
         }
-        completed.set(file.path, file.bytes);
-        showProgress();
         return;
       } catch (error) {
         showProgress();
-        if (attempt || error.name === 'QuotaExceededError') throw error;
-        await new Promise(resolve => setTimeout(resolve, 650));
+        if (attempt || storageFull(error)) throw error;
+        await new Promise(resolve => setTimeout(resolve, 500));
       }
     }
   }
 
-  async function checkSaved() {
-    if (!store) return;
-    const keys = new Set((await store.keys()).map(request => request.url));
-    for (const file of files) {
-      if (keys.has(new URL(file.path, root).href)) completed.set(file.path, file.bytes);
+  function makeQueue() {
+    const bundles = new Map(manifest.packs.map(pack => [pack.path, { ...pack, files: [] }]));
+    const shell = [];
+    for (const file of manifest.files) {
+      if (file.pack) bundles.get(file.pack).files.push(file);
+      else shell.push({ ...file, files: [file] });
     }
-    showProgress();
+    // Keep the largest downloads running while idle workers finish the small shell files.
+    return [...[...bundles.values()].sort((a, b) => b.bytes - a.bytes), ...shell];
   }
 
-  async function runPool(queue) {
+  async function collectDownloads() {
+    const queue = makeQueue().filter(item => item.files.some(file => !completed.has(file.path)));
     let failure;
     const worker = async () => {
       while (queue.length && !failure) {
-        const file = queue.shift();
+        const next = queue.shift();
         try {
-          await saveAsset(file);
+          await saveDownload(next);
         } catch (error) {
           failure = error;
         }
       }
     };
-    await Promise.all(Array.from({ length: 4 }, worker));
+    await Promise.all(Array.from({ length: Math.min(queue.length, 6) }, worker));
     if (failure) throw failure;
   }
 
+  async function checkSaved() {
+    if (!store) return;
+    const keys = new Set((await store.keys()).map(request => request.url));
+    for (const file of manifest.files) {
+      if (keys.has(urlFor(file.path))) completed.set(file.path, file.bytes);
+    }
+
+    const previous = manifest.reuseFrom;
+    if (completed.size === manifest.files.length || !previous ||
+        !await caches.has(prefix + previous.version)) return;
+    const old = await caches.open(prefix + previous.version);
+    const reusable = new Set(previous.files);
+    for (const file of manifest.files) {
+      if (completed.has(file.path) || !reusable.has(file.path)) continue;
+      const address = urlFor(file.path);
+      const item = await old.match(address);
+      if (item && Number(item.headers.get('Content-Length')) === file.bytes) {
+        await store.put(address, item);
+        completed.set(file.path, file.bytes);
+        showProgress();
+      }
+    }
+  }
+
   async function useMemory() {
-    // A browser with full storage can still play from the downloaded bytes.
     const disk = store;
     store = undefined;
-    for (const file of files) {
+    for (const file of manifest.files) {
       if (!completed.has(file.path)) continue;
-      const response = await disk.match(new URL(file.path, root));
+      const response = await disk.match(urlFor(file.path)).catch(() => undefined);
       if (response) remember(file, await response.blob());
       else completed.delete(file.path);
     }
-    html.dataset.rocCache = 'memory';
+    page.dataset.rocCache = 'memory';
+  }
+
+  async function prepare() {
+    [manifest, store] = await Promise.all([readManifest(), connectCache()]);
+    page.dataset.rocCache = store ? 'disk' : 'memory';
+    bar.max = manifest.files.reduce((sum, file) => sum + file.bytes, 0);
+    if (!store) return;
+    try {
+      await store.put(urlFor('preload-manifest.json'), new Response(JSON.stringify(manifest), {
+        headers: { 'Content-Type': 'application/json; charset=utf-8' },
+      }));
+      await checkSaved();
+    } catch (error) {
+      if (!storageFull(error)) throw error;
+      await useMemory();
+    }
   }
 
   async function enterGame() {
@@ -204,33 +264,26 @@
     window.__rocMobileAsset = (path, original) => {
       const cached = memory.get(path);
       if (cached) return cached + original.hash;
-      const url = new URL(path + original.search + original.hash, root);
-      url.searchParams.set('v', version);
-      return url.href;
+      return urlFor(path + original.search + original.hash, 'v');
     };
     start();
   }
 
   async function begin() {
-    if (inProgress) return;
-    inProgress = true;
+    if (running) return;
+    running = true;
     retry.hidden = true;
     setStatus('preparing', '正在准备游戏', '首次需要下载游戏素材。');
     try {
-      if (!files) {
-        store = await connectCache();
-        html.dataset.rocCache = store ? 'disk' : 'memory';
-        files = await readManifest();
-        await checkSaved();
-      }
+      if (!manifest) await prepare();
       setStatus('loading', '正在预载画面和声音', '');
       showProgress();
       try {
-        await runPool(files.filter(file => !completed.has(file.path)));
+        await collectDownloads();
       } catch (error) {
-        if (!store || error.name !== 'QuotaExceededError') throw error;
+        if (!store || !storageFull(error)) throw error;
         await useMemory();
-        await runPool(files.filter(file => !completed.has(file.path)));
+        await collectDownloads();
       }
       setStatus('opening', '载入完成', '正在打开封面');
       await enterGame();
@@ -239,11 +292,10 @@
       setStatus('failed', '载入中断', '请检查网络后重试，已载入的素材会保留。');
       retry.hidden = false;
     } finally {
-      inProgress = false;
+      running = false;
     }
   }
 
   retry.addEventListener('click', begin);
   void begin();
 })();
-

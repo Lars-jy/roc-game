@@ -1,7 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1672 941">
-  <defs><filter id="feather" x="-10%" y="-10%" width="120%" height="120%"><feGaussianBlur stdDeviation="2.5"/></filter></defs>
-  <g fill="#fff" filter="url(#feather)">
-    <path d="M1059 253 Q1103 230 1155 241 Q1223 231 1266 263 L1253 327 Q1239 391 1174 410 Q1117 417 1082 359 Q1065 309 1059 253Z"/>
-    <path d="M1407 345 Q1458 329 1512 347 Q1555 355 1578 387 L1573 424 Q1544 439 1502 425 L1430 395Z"/>
-  </g>
-</svg>

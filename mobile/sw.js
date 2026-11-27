@@ -61,6 +61,29 @@ async function partial(response, range) {
   });
 }
 
+
+async function fromPack(path, version) {
+  const manifest = await cached('preload-manifest.json', version);
+  if (!manifest) return undefined;
+  const index = await manifest.json();
+  const file = index.files.find(entry => entry.path === path);
+  if (!file?.pack) return undefined;
+  const start = file.offset;
+  const end = start + file.bytes - 1;
+  const packURL = new URL(file.pack, scope);
+  packURL.searchParams.set('roc-download', version);
+  const response = await fetch(packURL, { headers: { Range: 'bytes=' + start + '-' + end } });
+  if (!response.ok) return undefined;
+  const data = await response.blob();
+  if (response.status === 206 && response.headers.get('Content-Range')?.startsWith('bytes ' + start + '-' + end + '/') && data.size === file.bytes) {
+    return new Response(data, { headers: { 'Content-Type': file.type } });
+  }
+  if (response.status === 200 && data.size > end) {
+    return new Response(data.slice(start, end + 1, file.type), { headers: { 'Content-Type': file.type } });
+  }
+  return undefined;
+}
+
 self.addEventListener('fetch', event => {
   const request = event.request;
   const url = new URL(request.url);
@@ -74,8 +97,10 @@ self.addEventListener('fetch', event => {
   if (!core.has(path) && !path.startsWith('assets/')) return;
   const version = url.searchParams.get('v') || release;
   event.respondWith((async () => {
-    const response = await cached(path, version);
+    let response = await cached(path, version);
+    if (!response && path.startsWith('assets/')) response = await fromPack(path, version);
     return response ? partial(response, request.headers.get('Range')) : fetch(request);
   })());
 });
+
 
